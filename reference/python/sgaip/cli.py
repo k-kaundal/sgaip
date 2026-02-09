@@ -49,11 +49,19 @@ def cmd_keygen(args):
     _write_keypair(sk, pk, private_path, public_path)
 
     aid = derive_agent_id(serialize_public_key(pk))
-    print("Key pair generated")
-    print("Agent ID:", aid)
+    print("Key pair generated:")
+    print(f"  Private key: {private_path}")
+    print(f"  Public key: {public_path}")
+    print(f"  Agent ID: {aid}")
 
 
 def cmd_sign(args):
+    if not args.message and not args.file:
+        raise SystemExit("Error: either --message or --file is required")
+    
+    if args.message and args.file:
+        raise SystemExit("Error: cannot specify both --message and --file")
+    
     private_path = Path(args.private)
     sk = _load_private(private_path)
 
@@ -64,10 +72,16 @@ def cmd_sign(args):
 
     sig = sign_challenge(sk, data)
     Path(args.out).write_bytes(sig)
-    print("Signature written to", args.out)
+    print(f"Signature written to {args.out}")
 
 
 def cmd_verify(args):
+    if not args.message and not args.file:
+        raise SystemExit("Error: either --message or --file is required")
+    
+    if args.message and args.file:
+        raise SystemExit("Error: cannot specify both --message and --file")
+    
     public_bytes = _load_public_bytes(Path(args.public))
     if args.message:
         data = args.message.encode()
@@ -79,12 +93,12 @@ def cmd_verify(args):
     try:
         ok = verify_proof(public_bytes, data, signature, expected_aid=None)
     except Exception as e:
-        print("Verification failed:", e)
+        print(f"Verification failed: {e}")
         raise SystemExit(2)
 
     if ok:
         print("✅ Signature valid")
-        print("Derived Agent ID:", derive_agent_id(public_bytes))
+        print(f"Derived Agent ID: {derive_agent_id(public_bytes)}")
     else:
         print("❌ Signature invalid")
         raise SystemExit(2)

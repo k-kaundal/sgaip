@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "sgaip"
-version = "0.1.1"
+version = "0.1.2"
 description = "Stateless Global Agent Identity Protocol (SGAIP) reference implementation"
 readme = "README.md"
 license = { text = "Apache-2.0" }
@@ -43,8 +43,8 @@ dev = [
 	"mypy>=1.7",
 ]
 
-[tool.setuptools.packages.find]
-where = ["sgaip"]
+[tool.setuptools]
+packages = ["sgaip"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

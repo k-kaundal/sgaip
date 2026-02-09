@@ -24,7 +24,7 @@ from .core import (
     verify_proof,
 )
 
-__version__ = "0.1.1"
+__version__ = "0.1.2"
 __all__ = [
     "IDENTITY_DOMAIN",
     "derive_agent_id",
