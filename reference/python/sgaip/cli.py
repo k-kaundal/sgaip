@@ -43,16 +43,21 @@ def _load_public_bytes(path: Path) -> bytes:
 
 
 def cmd_keygen(args):
-    sk, pk = generate_keypair()
-    private_path = Path(args.private)
-    public_path = Path(args.public)
-    _write_keypair(sk, pk, private_path, public_path)
+    try:
+        sk, pk = generate_keypair()
+        private_path = Path(args.private)
+        public_path = Path(args.public)
+        _write_keypair(sk, pk, private_path, public_path)
 
-    aid = derive_agent_id(serialize_public_key(pk))
-    print("Key pair generated:")
-    print(f"  Private key: {private_path}")
-    print(f"  Public key: {public_path}")
-    print(f"  Agent ID: {aid}")
+        aid = derive_agent_id(serialize_public_key(pk))
+        print("Key pair generated:")
+        print(f"  Private key: {private_path}")
+        print(f"  Public key: {public_path}")
+        print(f"  Agent ID: {aid}")
+    except PermissionError as e:
+        raise SystemExit(f"Error: permission denied - {e.filename}")
+    except Exception as e:
+        raise SystemExit(f"Error: {e}")
 
 
 def cmd_sign(args):
@@ -62,17 +67,22 @@ def cmd_sign(args):
     if args.message and args.file:
         raise SystemExit("Error: cannot specify both --message and --file")
     
-    private_path = Path(args.private)
-    sk = _load_private(private_path)
+    try:
+        private_path = Path(args.private)
+        sk = _load_private(private_path)
 
-    if args.message:
-        data = args.message.encode()
-    else:
-        data = Path(args.file).read_bytes()
+        if args.message:
+            data = args.message.encode()
+        else:
+            data = Path(args.file).read_bytes()
 
-    sig = sign_challenge(sk, data)
-    Path(args.out).write_bytes(sig)
-    print(f"Signature written to {args.out}")
+        sig = sign_challenge(sk, data)
+        Path(args.out).write_bytes(sig)
+        print(f"Signature written to {args.out}")
+    except FileNotFoundError as e:
+        raise SystemExit(f"Error: file not found - {e.filename}")
+    except Exception as e:
+        raise SystemExit(f"Error: {e}")
 
 
 def cmd_verify(args):
@@ -82,25 +92,27 @@ def cmd_verify(args):
     if args.message and args.file:
         raise SystemExit("Error: cannot specify both --message and --file")
     
-    public_bytes = _load_public_bytes(Path(args.public))
-    if args.message:
-        data = args.message.encode()
-    else:
-        data = Path(args.file).read_bytes()
-
-    signature = Path(args.signature).read_bytes()
-
     try:
-        ok = verify_proof(public_bytes, data, signature, expected_aid=None)
-    except Exception as e:
-        print(f"Verification failed: {e}")
-        raise SystemExit(2)
+        public_bytes = _load_public_bytes(Path(args.public))
+        if args.message:
+            data = args.message.encode()
+        else:
+            data = Path(args.file).read_bytes()
 
-    if ok:
-        print("✅ Signature valid")
-        print(f"Derived Agent ID: {derive_agent_id(public_bytes)}")
-    else:
-        print("❌ Signature invalid")
+        signature = Path(args.signature).read_bytes()
+
+        ok = verify_proof(public_bytes, data, signature, expected_aid=None)
+        if ok:
+            print("✅ Signature valid")
+            print(f"Derived Agent ID: {derive_agent_id(public_bytes)}")
+        else:
+            print("❌ Signature invalid")
+            raise SystemExit(2)
+    except FileNotFoundError as e:
+        raise SystemExit(f"Error: file not found - {e.filename}")
+    except Exception as e:
+        error_msg = str(e) if str(e) else type(e).__name__
+        print(f"Verification failed: {error_msg}")
         raise SystemExit(2)
 
 
