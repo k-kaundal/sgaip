@@ -172,18 +172,43 @@ sgaip verify --public agent.pk --signature signature.bin --message "hello"</code
         <!-- Repository Structure Section -->
         <section id="implementation">
             <h2>Repository Structure</h2>
-            <div class="code-block"><code>.
-├── docs/               # Terminology and concepts
-├── specs/              # Protocol specifications
-│   ├── sgaip-core.md              # Core specification
-│   ├── identity-derivation.md     # Identity derivation spec
-│   ├── proof-protocol.md          # Proof/signature spec
-│   └── threat-model.md            # Security threat model
-├── reference/          # Reference implementations (production-ready)
-│   ├── python/         # Python package + CLI
-│   └── js/             # TypeScript/JavaScript package + CLI
-├── test-vectors/       # Interoperability test data
-└── cli/                # Legacy Python CLI (see reference/python)</code></div>
+            <div class="repo-structure">
+                <div class="folder">
+                    <span class="folder-icon">📁</span>
+                    <span class="folder-name">docs/</span>
+                    <span class="folder-desc" title="Terminology and concepts">Terminology and concepts</span>
+                </div>
+                <div class="folder">
+                    <span class="folder-icon">📁</span>
+                    <span class="folder-name">specs/</span>
+                    <span class="folder-desc" title="Protocol specifications">Protocol specifications</span>
+                    <div class="subfolder">
+                        <div class="file"><span class="file-icon">📄</span> sgaip-core.md <span class="file-desc">Core specification</span></div>
+                        <div class="file"><span class="file-icon">📄</span> identity-derivation.md <span class="file-desc">Identity derivation spec</span></div>
+                        <div class="file"><span class="file-icon">📄</span> proof-protocol.md <span class="file-desc">Proof/signature spec</span></div>
+                        <div class="file"><span class="file-icon">📄</span> threat-model.md <span class="file-desc">Security threat model</span></div>
+                    </div>
+                </div>
+                <div class="folder">
+                    <span class="folder-icon">📁</span>
+                    <span class="folder-name">reference/</span>
+                    <span class="folder-desc" title="Reference implementations (production-ready)">Reference implementations (production-ready)</span>
+                    <div class="subfolder">
+                        <div class="folder"><span class="folder-icon">📁</span> python/ <span class="folder-desc">Python package + CLI</span></div>
+                        <div class="folder"><span class="folder-icon">📁</span> js/ <span class="folder-desc">TypeScript/JavaScript package + CLI</span></div>
+                    </div>
+                </div>
+                <div class="folder">
+                    <span class="folder-icon">📁</span>
+                    <span class="folder-name">test-vectors/</span>
+                    <span class="folder-desc" title="Interoperability test data">Interoperability test data</span>
+                </div>
+                <div class="folder">
+                    <span class="folder-icon">📁</span>
+                    <span class="folder-name">cli/</span>
+                    <span class="folder-desc" title="Legacy Python CLI (see reference/python)">Legacy Python CLI (see reference/python)</span>
+                </div>
+            </div>
         </section>
 
         <!-- Status Section -->
