@@ -1,0 +1,15 @@
+title: SGAIP - Stateless Global Agent Identity Protocol
+description: A cryptographic identity protocol for humans and AI agents without registries or blockchains
+url: https://k-kaundal.github.io
+baseurl: /sgaip
+theme: jekyll-theme-slate
+markdown: kramdown
+plugins:
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+author:
+  name: SGAIP Contributors
+  email: contact@sgaip.dev
+
+locale: en_US
