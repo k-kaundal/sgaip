@@ -1,48 +1,39 @@
-# SGAIP Website - Jekyll Configuration for GitHub Pages
-title: SGAIP - Stateless Global Agent Identity Protocol
-description: A cryptographic identity protocol for humans and AI agents without registries or blockchains
+# SGAIP Website - Jekyll Configuration
+title: SGAIP – Stateless Global Agent Identity Protocol
+description: Stateless cryptographic identity for humans and AI agents
 
-# Site URL
-url: https://k-kaundal.github.io
-baseurl: /sgaip
+# Site URL (custom domain)
+url: https://sgaip.org
+baseurl: ""   # MUST be empty for custom domain
 
 # Build settings
 markdown: kramdown
 theme: jekyll-theme-slate
 
-# Plugins for GitHub Pages
+# Plugins supported by GitHub Pages
 plugins:
   - jekyll-sitemap
   - jekyll-seo-tag
-  - jekyll-feed
 
 # Site metadata
 author:
   name: SGAIP Contributors
-  email: contact@sgaip.dev
 
-# Settings
 locale: en_US
 timezone: UTC
-show_downloads: false
 
-# Build options
+# Safety (GitHub Pages requirement)
 safe: true
-lsi: false
-incremental: false
 
-# Exclude from processing
+# Exclude unnecessary files (DO NOT exclude *.md)
 exclude:
   - .git
   - .gitignore
   - node_modules
   - Gemfile
   - Gemfile.lock
-  - "*.md"
 
-# Include these files/folders
+# Optional includes
 include:
-  - .htaccess
   - robots.txt
-  - sitemap.xml
   - favicon.svg
