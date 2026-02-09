@@ -1,0 +1,51 @@
+{
+  "name": "sgaip",
+  "version": "0.1.0",
+  "description": "Stateless Global Agent Identity Protocol (SGAIP) – reference library and CLI",
+  "license": "Apache-2.0",
+  "type": "module",
+  "main": "./dist/src/index.js",
+  "types": "./dist/src/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/src/index.js",
+      "types": "./dist/src/index.d.ts"
+    }
+  },
+  "bin": {
+    "sgaip": "./dist/bin/sgaip.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "identity",
+    "cryptography",
+    "offline",
+    "protocol",
+    "ai",
+    "stateless",
+    "agent"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/k-kaundal/sgaip"
+  },
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "dev": "tsc --watch",
+    "prepublishOnly": "npm run clean && npm run build",
+    "test": "node --test dist/**/*.test.js",
+    "lint": "eslint src bin",
+    "type-check": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.6",
+    "typescript": "^5.3.3",
+    "eslint": "^8.56.0",
+    "@typescript-eslint/eslint-plugin": "^6.17.0",
+    "@typescript-eslint/parser": "^6.17.0"
+  },
+  "dependencies": {}
+}
