@@ -4,5 +4,5 @@
  */
 
 export { deriveAID, IDENTITY_DOMAIN } from "./identity.js";
-export { generateKeyPair, type KeyPairResult } from "./keys.js";
+export { generateKeyPair, createPrivateKeyObjectFromRaw, createPublicKeyObjectFromRaw, zeroBuffer, type KeyPairResult } from "./keys.js";
 export { sign, verify } from "./proof.js";

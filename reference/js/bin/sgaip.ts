@@ -4,7 +4,7 @@ import fs from "fs";
 import path from "path";
 import { parseArgs } from "util";
 import { deriveAID } from "../src/identity.js";
-import { generateKeyPair } from "../src/keys.js";
+import { generateKeyPair, zeroBuffer } from "../src/keys.js";
 import { sign, verify } from "../src/proof.js";
 
 interface CommandContext {
@@ -62,12 +62,17 @@ async function cmdSign(ctx: CommandContext): Promise<void> {
   }
 
   const privateKey = fs.readFileSync(privateFile);
-  const signature = sign(privateKey, data);
+  try {
+    const signature = sign(privateKey, data);
 
-  const outFile = (ctx.args.out as string) || "signature.bin";
-  fs.writeFileSync(outFile, signature);
+    const outFile = (ctx.args.out as string) || "signature.bin";
+    fs.writeFileSync(outFile, signature);
 
-  console.log("Signature written to:", outFile);
+    console.log("Signature written to:", outFile);
+  } finally {
+    // Securely zero out the private key from memory as soon as we're done signing
+    zeroBuffer(privateKey);
+  }
 }
 
 async function cmdVerify(ctx: CommandContext): Promise<void> {
