@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://k-kaundal.github.io/sgaip/sitemap.xml
+
+Disallow: /404.html

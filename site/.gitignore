@@ -1,0 +1,15 @@
+.DS_Store
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+_site/
+.jekyll-cache/
+.jekyll-metadata
+node_modules/
+*.egg-info/
+__pycache__/
+.pytest_cache/
+dist/
+build/

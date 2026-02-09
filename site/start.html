@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SGAIP - Installation and getting started guides for Python and JavaScript">
+    <title>Getting Started - SGAIP</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#features">Features</a></li>
+            <li><a href="start.html">Get Started</a></li>
+            <li><a href="specs.html">Specs</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="https://github.com/k-kaundal/sgaip" target="_blank">GitHub</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <div class="container">
+            <h1>Getting Started</h1>
+            <p class="subtitle">Installation and first steps</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section>
+            <h2>Installation</h2>
+            <p>Choose your preferred language and follow the installation guide below.</p>
+        </section>
+
+        <section>
+            <h2>Python Installation</h2>
+            
+            <h3>Step 1: Install the Package</h3>
+            <p>Install SGAIP using pip:</p>
+            <div class="code-block"><code>pip install sgaip</code></div>
+
+            <h3>Step 2: Verify Installation</h3>
+            <p>Check that SGAIP is installed correctly:</p>
+            <div class="code-block"><code>sgaip --version</code></div>
+
+            <h3>Step 3: Generate Your First Identity</h3>
+            <p>Create a new cryptographic key pair:</p>
+            <div class="code-block"><code>sgaip keygen</code></div>
+            <p>This generates two files:</p>
+            <ul>
+                <li><code>agent.sk</code> - Your private key (keep this secret!)</li>
+                <li><code>agent.pk</code> - Your public key (share this safely)</li>
+            </ul>
+
+            <h3>Step 4: Sign a Message</h3>
+            <p>Create a cryptographic signature:</p>
+            <div class="code-block"><code>sgaip sign --private agent.sk --message "Hello, SGAIP!"</code></div>
+            <p>This creates a <code>signature.bin</code> file containing your digital signature.</p>
+
+            <h3>Step 5: Verify a Signature</h3>
+            <p>Verify that a signature is authentic:</p>
+            <div class="code-block"><code>sgaip verify --public agent.pk --signature signature.bin --message "Hello, SGAIP!"</code></div>
+            <p>If the message is correct, verification succeeds. If someone changes the message, verification fails.</p>
+
+            <h3>Using SGAIP as a Library</h3>
+            <p>You can also use SGAIP in your Python code:</p>
+            <div class="code-block"><code>from sgaip import SGAIP
+
+# Create an SGAIP instance
+sgaip = SGAIP()
+
+# Generate keys
+sgaip.keygen()
+
+# Your identity is derived from your public key
+identity = sgaip.get_identity()
+print(f"Your identity: {identity}")
+
+# Sign a message
+signature = sgaip.sign("Hello, world!")
+
+# Verify a signature
+is_valid = sgaip.verify(signature, "Hello, world!")
+print(f"Signature valid: {is_valid}")</code></div>
+
+            <p>📚 <strong><a href="https://github.com/k-kaundal/sgaip/tree/main/reference/python" target="_blank">View Python Documentation</a></strong></p>
+        </section>
+
+        <section>
+            <h2>JavaScript/TypeScript Installation</h2>
+            
+            <h3>Step 1: Install the Package</h3>
+            <p>Install SGAIP using npm:</p>
+            <div class="code-block"><code>npm install -g sgaip</code></div>
+            <p>Or add it to your project:</p>
+            <div class="code-block"><code>npm install sgaip</code></div>
+
+            <h3>Step 2: Verify Installation</h3>
+            <p>Check that SGAIP is installed correctly:</p>
+            <div class="code-block"><code>sgaip --version</code></div>
+
+            <h3>Step 3: Generate Your First Identity</h3>
+            <p>Create a new cryptographic key pair:</p>
+            <div class="code-block"><code>sgaip keygen</code></div>
+            <p>This generates two files:</p>
+            <ul>
+                <li><code>agent.sk</code> - Your private key (keep this secret!)</li>
+                <li><code>agent.pk</code> - Your public key (share this safely)</li>
+            </ul>
+
+            <h3>Step 4: Sign a Message</h3>
+            <p>Create a cryptographic signature:</p>
+            <div class="code-block"><code>sgaip sign --private agent.sk --message "Hello, SGAIP!"</code></div>
+
+            <h3>Step 5: Verify a Signature</h3>
+            <p>Verify that a signature is authentic:</p>
+            <div class="code-block"><code>sgaip verify --public agent.pk --signature signature.bin --message "Hello, SGAIP!"</code></div>
+
+            <h3>Using SGAIP in TypeScript</h3>
+            <p>You can also use SGAIP in your TypeScript/JavaScript code:</p>
+            <div class="code-block"><code>import { SGAIP } from 'sgaip';
+
+// Create an SGAIP instance
+const sgaip = new SGAIP();
+
+// Generate keys
+const { publicKey, privateKey } = await sgaip.keygen();
+
+// Your identity is derived from your public key
+const identity = sgaip.getIdentity(publicKey);
+console.log(`Your identity: ${identity}`);
+
+// Sign a message
+const message = 'Hello, world!';
+const signature = await sgaip.sign(privateKey, message);
+
+// Verify a signature
+const isValid = await sgaip.verify(publicKey, signature, message);
+console.log(`Signature valid: ${isValid}`);</code></div>
+
+            <p>📚 <strong><a href="https://github.com/k-kaundal/sgaip/tree/main/reference/js" target="_blank">View JavaScript Documentation</a></strong></p>
+        </section>
+
+        <section>
+            <h2>Common Patterns</h2>
+
+            <h3>Creating a New Agent Identity</h3>
+            <p><strong>Scenario:</strong> You want to create a new agent that can be identified and trusted.</p>
+            <div class="code-block"><code># Generate a new key pair
+sgaip keygen --output agent
+
+# Publish your public key somewhere safe
+cat agent.pk
+
+# Keep your private key secure
+# Never share agent.sk with anyone</code></div>
+
+            <h3>Signing a Document</h3>
+            <p><strong>Scenario:</strong> You want to sign a document to prove you created it.</p>
+            <div class="code-block"><code># Create your document
+echo "This is my important document" > document.txt
+
+# Sign it with your private key
+sgaip sign --private agent.sk --message "$(cat document.txt)" > document.sig
+
+# Anyone can verify it with your public key
+sgaip verify --public agent.pk --message "$(cat document.txt)" --signature document.sig</code></div>
+
+            <h3>Verifying Agent Identity</h3>
+            <p><strong>Scenario:</strong> You want to verify that a message came from a specific agent.</p>
+            <div class="code-block"><code># Get their public key (from a trusted source)
+# Receive a message and signature from them
+# Verify the signature
+
+sgaip verify --public their_agent.pk \
+  --message "Their message" \
+  --signature message.sig</code></div>
+        </section>
+
+        <section>
+            <h2>Next Steps</h2>
+            <ul>
+                <li><strong><a href="about.html">Learn more about SGAIP</a></strong> - Understand the philosophy and design</li>
+                <li><strong><a href="specs.html">Read the specifications</a></strong> - Deep dive into the technical details</li>
+                <li><strong><a href="https://github.com/k-kaundal/sgaip" target="_blank">Explore the repository</a></strong> - See examples and source code</li>
+                <li><strong><a href="https://github.com/k-kaundal/sgaip/discussions" target="_blank">Join discussions</a></strong> - Ask questions, share ideas</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Troubleshooting</h2>
+
+            <h3>Command not found: sgaip</h3>
+            <p>Make sure SGAIP is installed:</p>
+            <ul>
+                <li><strong>Python:</strong> Run <code>pip install sgaip</code></li>
+                <li><strong>JavaScript:</strong> Run <code>npm install -g sgaip</code></li>
+            </ul>
+
+            <h3>Permission denied: agent.sk</h3>
+            <p>Your private key file needs proper permissions:</p>
+            <div class="code-block"><code>chmod 600 agent.sk</code></div>
+
+            <h3>Signature verification failed</h3>
+            <p>Common causes:</p>
+            <ul>
+                <li>The message text changed (even whitespace matters)</li>
+                <li>Using the wrong public key</li>
+                <li>The signature file is corrupted</li>
+            </ul>
+
+            <h3>Still have issues?</h3>
+            <p><strong><a href="https://github.com/k-kaundal/sgaip/issues" target="_blank">Open an issue on GitHub</a></strong> - the community is here to help!</p>
+        </section>
+
+        <section class="hero alt">
+            <h2 style="border: none; text-align: center;">Need More Help?</h2>
+            <p style="text-align: center; margin-bottom: 30px;">Check out the documentation or join our community.</p>
+            <div class="cta-buttons" style="justify-content: center;">
+                <a href="specs.html" class="btn btn-primary">View Specifications</a>
+                <a href="https://github.com/k-kaundal/sgaip/discussions" class="btn btn-secondary" target="_blank">Community Discussions</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="https://github.com/k-kaundal/sgaip" target="_blank">GitHub</a>
+                <a href="https://pypi.org/project/sgaip/" target="_blank">PyPI</a>
+                <a href="https://www.npmjs.com/package/sgaip" target="_blank">npm</a>
+            </div>
+            <p>&copy; 2025 SGAIP Contributors. Licensed under MIT.</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="About SGAIP - Learn about the Stateless Global Agent Identity Protocol">
+    <title>About - SGAIP</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#features">Features</a></li>
+            <li><a href="index.html#quickstart">Quick Start</a></li>
+            <li><a href="specs.html">Specs</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="https://github.com/k-kaundal/sgaip" target="_blank">GitHub</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <div class="container">
+            <h1>About SGAIP</h1>
+            <p class="subtitle">Understanding stateless identity</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section>
+            <h2>What is SGAIP?</h2>
+            <p>
+                <strong>SGAIP (Stateless Global Agent Identity Protocol)</strong> is a cryptographic protocol that enables 
+                global, offline-verifiable identity for humans and AI agents without requiring any form of central authority, 
+                registry, or blockchain.
+            </p>
+            <p>
+                At its core, SGAIP answers a fundamental question: <em>How can we prove identity without relying on a 
+                central authority?</em> The answer is through cryptography.
+            </p>
+        </section>
+
+        <section>
+            <h2>The Problem SGAIP Solves</h2>
+            <div class="features">
+                <div class="feature-card">
+                    <h3>Registry Dependency</h3>
+                    <p>Traditional identity systems require a registry—a government body, company database, or blockchain—to maintain records. This creates a single point of failure and requires trust in a centralized authority.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Online Verification</h3>
+                    <p>Most identity systems require you to be online to verify someone's identity. You need network access to query a database or blockchain.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>AI Agent Identity</h3>
+                    <p>Current systems weren't designed for autonomous agents. There's no standard way for AI systems to establish and prove identity without going through human-centric processes.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Interoperability</h3>
+                    <p>Different platforms and systems use different identity mechanisms. There's no interoperable standard for proving identity across platforms.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>How SGAIP Works</h2>
+            <p>SGAIP works by deriving identity from cryptographic keys in a completely deterministic way:</p>
+            
+            <ol>
+                <li><strong>Key Generation:</strong> Generate a public-private key pair using Ed25519</li>
+                <li><strong>Identity Derivation:</strong> Compute your identity (Agent Identity Digit/AID) by hashing your public key</li>
+                <li><strong>Proof Creation:</strong> Sign any message with your private key to create a cryptographic proof</li>
+                <li><strong>Verification:</strong> Anyone can verify the proof using your public key—no registry needed</li>
+            </ol>
+
+            <div style="background: rgba(0, 212, 255, 0.1); border-left: 4px solid var(--accent-color); padding: 20px; margin: 30px 0; border-radius: var(--border-radius);">
+                <p><strong>Key Insight:</strong> Your identity is not stored anywhere. It's calculated from your public key. The same calculation always produces the same identity. This means your identity is <em>portable</em> and <em>verifiable</em> anywhere without asking any authority.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Key Differences from Other Systems</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>SGAIP</th>
+                        <th>Traditional Registry</th>
+                        <th>Blockchain</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Registry Required</strong></td>
+                        <td>❌ No</td>
+                        <td>✅ Yes</td>
+                        <td>✅ Yes (distributed)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Offline Verification</strong></td>
+                        <td>✅ Full</td>
+                        <td>❌ No</td>
+                        <td>❌ No</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Central Authority</strong></td>
+                        <td>❌ None</td>
+                        <td>✅ Required</td>
+                        <td>❌ None (consensus-based)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Permissionless</strong></td>
+                        <td>✅ Instant</td>
+                        <td>❌ No (approval needed)</td>
+                        <td>✅ Yes</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cost</strong></td>
+                        <td>❌ CPU only</td>
+                        <td>💰 High (operational costs)</td>
+                        <td>💰 High (transaction fees)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>AI-Native</strong></td>
+                        <td>✅ Designed for agents</td>
+                        <td>❌ Human-centric</td>
+                        <td>❌ Human-centric</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>Design Philosophy</h2>
+            <ul>
+                <li><strong>Cryptography First:</strong> Identity based on mathematical proofs, not institutional authority</li>
+                <li><strong>Minimal Primitives:</strong> Uses only Ed25519 and SHA-256—no exotic cryptography</li>
+                <li><strong>Stateless:</strong> Complete information is encoded in the keys; nothing needs to be stored on a server</li>
+                <li><strong>Deterministic:</strong> Same inputs always produce the same output. No randomness in identity calculation</li>
+                <li><strong>Open Standard:</strong> Completely open specification with multiple independent implementations</li>
+                <li><strong>Practical:</strong> Designed for real-world use, not just theoretical interest</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Use Cases</h2>
+            <h3>For Individuals</h3>
+            <ul>
+                <li>Create a self-sovereign identity not tied to any company or government</li>
+                <li>Sign important documents with cryptographic proof of origin</li>
+                <li>Maintain the same identity across different platforms</li>
+                <li>Participate in permissionless systems while maintaining privacy</li>
+            </ul>
+
+            <h3>For Organizations</h3>
+            <ul>
+                <li>Implement permissionless identity verification systems</li>
+                <li>Build authentication without maintaining a user database</li>
+                <li>Create trustless communication channels</li>
+                <li>Verify the provenance of data and documents</li>
+            </ul>
+
+            <h3>For AI Systems</h3>
+            <ul>
+                <li>Autonomous agents prove their identity using cryptographic keys</li>
+                <li>AI systems sign actions and can be held accountable</li>
+                <li>Enable AI-to-AI communication with cryptographic verification</li>
+                <li>Create audit trails and accountability without central authorities</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Limitations & What SGAIP Is Not</h2>
+            <p>SGAIP solves the problem of identity derivation and cryptographic proof, but it's important to understand what it doesn't do:</p>
+            <ul>
+                <li><strong>Not a Trust System:</strong> SGAIP proves <em>who</em> you are, not whether you're <em>trustworthy</em>. You still need reputation systems, reviews, or social graphs for trust.</li>
+                <li><strong>Not Authorization:</strong> Identity doesn't imply permission. You need separate authorization systems to control what people can do.</li>
+                <li><strong>Not Discovery:</strong> SGAIP doesn't help you find other people or maintain contact information. It's purely identity derivation.</li>
+                <li><strong>Not Revocation:</strong> There's no built-in way to "revoke" an identity. If a key is compromised, you create a new one and move forward.</li>
+                <li><strong>Not Privacy:</strong> SGAIP itself doesn't hide your identity. You can use it anonymously, but additional layers are needed for privacy.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>The Problem of Global Identity</h2>
+            <p>
+                Throughout human history, proving identity has required institutional authority. A passport proves identity because 
+                a government issued it. A bank account proves identity because a bank maintains records. A social media profile exists 
+                because a platform created it.
+            </p>
+            <p>
+                SGAIP breaks this pattern. It shows that identity can be mathematically derived, verified, and proved without any 
+                institution maintaining records. Your identity becomes a fact about your keys, not a fact about a database.
+            </p>
+        </section>
+
+        <section>
+            <h2>Getting Involved</h2>
+            <p>SGAIP is an open-source project. We welcome contributions, feedback, and implementations in other languages.</p>
+            <div style="margin: 30px 0;">
+                <ul>
+                    <li><a href="https://github.com/k-kaundal/sgaip" target="_blank"><strong>GitHub Repository</strong></a> – Source code and specifications</li>
+                    <li><a href="https://github.com/k-kaundal/sgaip/discussions" target="_blank"><strong>Community Discussions</strong></a> – Ask questions, share ideas</li>
+                    <li><a href="https://github.com/k-kaundal/sgaip/issues" target="_blank"><strong>Issue Tracker</strong></a> – Report bugs, request features</li>
+                    <li><a href="https://pypi.org/project/sgaip/" target="_blank"><strong>Python Package</strong></a> – Try it out in Python</li>
+                    <li><a href="https://www.npmjs.com/package/sgaip" target="_blank"><strong>JavaScript Package</strong></a> – Try it out in JavaScript</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="hero alt">
+            <h2 style="border: none; text-align: center;">Ready to Learn More?</h2>
+            <p style="text-align: center; margin-bottom: 30px;">Explore the technical specifications or start implementing SGAIP.</p>
+            <div class="cta-buttons" style="justify-content: center;">
+                <a href="specs.html" class="btn btn-primary">Read Specifications</a>
+                <a href="index.html#quickstart" class="btn btn-secondary">Quick Start Guide</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="https://github.com/k-kaundal/sgaip" target="_blank">GitHub</a>
+                <a href="https://github.com/k-kaundal/sgaip/discussions" target="_blank">Discussions</a>
+                <a href="about.html">About</a>
+            </div>
+            <p>&copy; 2026 SGAIP Contributors. Licensed under MIT.</p>
+        </div>
+    </footer>
+</body>
+</html>
