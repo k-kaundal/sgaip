@@ -45,6 +45,21 @@ sgaip verify --public agent.pk --signature signature.bin --message "hello"
 
 ---
 
+## 🚀 What's New (2026 Q1)
+
+SGAIP is evolving from research prototype to production-grade identity protocol:
+
+- 📋 **[Complete Roadmap](ROADMAP.md)** - 24-month plan to production readiness
+- 🔒 **[Security Guide](docs/security-guide.md)** - Production security best practices
+- 🔐 **Post-Quantum Cryptography** - [ML-DSA migration plan](specs/post-quantum-analysis.md) for quantum resistance
+- 🎭 **Advanced Features** - [Zero-knowledge proofs](specs/zero-knowledge-proofs.md), [threshold signatures](specs/threshold-identities.md), [trust layer](specs/trust-statements.md)
+- 🔧 **Algorithm Agility** - [SGAIP v2 specification](specs/algorithm-agility.md) with multi-algorithm support
+- 📊 **Security Audit** - [Audit requirements](docs/security-audit-requirements.md) defined, planned for 2026 Q3
+
+**Timeline**: Current focus on Phase 1 (Security & Foundation), quantum-resistant v2 by 2027.
+
+---
+
 ## What SGAIP Is Not
 
 - ❌ Not blockchain-based
@@ -178,13 +193,20 @@ See [DEVELOPMENT.md](DEVELOPMENT.md) for detailed guidance.
 
 ## Security
 
-⚠️  **Reference implementations are for educational and research purposes.**
+⚠️  **SGAIP v1 Status (February 2026):**
 
-- Not audited for production use
-- Use at your own risk
-- For production systems, seek professional security review
+- Reference implementations not yet audited for production use
+- **Quantum Vulnerable**: Ed25519 will be broken by large-scale quantum computers (estimated 2030-2035)
+- Use at your own risk in non-critical applications
+- Security audit planned for 2026 Q3
 
-See [specs/threat-model.md](specs/threat-model.md) for security analysis.
+**Security Resources**:
+- 📖 [Security Guide](docs/security-guide.md) - Comprehensive security best practices
+- 📖 [Threat Model](specs/threat-model.md) - Security analysis and attack vectors
+- 📖 [Post-Quantum Analysis](specs/post-quantum-analysis.md) - Quantum threat and migration plan
+- 📖 [Audit Requirements](docs/security-audit-requirements.md) - Security audit scope and timeline
+
+**Quantum-Resistant SGAIP v2**: Migration to ML-DSA (post-quantum) planned for 2027. See [Roadmap](ROADMAP.md).
 
 ---
 

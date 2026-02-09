@@ -1,286 +1,991 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="SGAIP - Stateless Global Agent Identity Protocol for humans and AI agents without registries or blockchains.">
-    <meta name="keywords" content="SGAIP, identity, protocol, cryptography, AI agents, decentralized">
+    <meta name="description" content="SGAIP - Quantum-Resistant Stateless Global Agent Identity Protocol for humans and AI agents. Production-ready by 2028.">
+    <meta name="keywords" content="SGAIP, identity, protocol, cryptography, AI agents, quantum-resistant, post-quantum, zero-knowledge, threshold signatures">
     <meta name="author" content="SGAIP Contributors">
-    <title>SGAIP - Stateless Global Agent Identity Protocol</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="canonical" href="https://k-kaundal.github.io/sgaip/">
+    <title>SGAIP - Quantum-Resistant Identity for AI Agents</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="canonical" href="https://k-kaundal.github.io/sgaip/">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#e6f1ff',
+                            100: '#cce3ff',
+                            200: '#99c7ff',
+                            300: '#66abff',
+                            400: '#338fff',
+                            500: '#0073ff',
+                            600: '#005ccc',
+                            700: '#004599',
+                            800: '#002e66',
+                            900: '#001733',
+                        },
+                        quantum: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        }
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.8s ease-in',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'float': 'float 3s ease-in-out infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(30px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        glow: {
+                            '0%': { boxShadow: '0 0 5px rgba(14, 165, 233, 0.5)' },
+                            '100%': { boxShadow: '0 0 20px rgba(14, 165, 233, 0.8), 0 0 40px rgba(14, 165, 233, 0.4)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+        
+        code, pre {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #0ea5e9 0%, #3b82f6 50%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 25%, #3b82f6 50%, #0ea5e9 75%, #06b6d4 100%);
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #3b82f6, #0ea5e9, #8b5cf6);
+        }
+    </style>
 </head>
-<body>
+<body class="bg-gray-50">
     <!-- Navigation -->
-    <nav>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#features">Features</a></li>
-            <li><a href="start.html">Get Started</a></li>
-            <li><a href="#documentation">Docs</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="https://github.com/k-kaundal/sgaip" target="_blank">GitHub</a></li>
-        </ul>
+    <nav class="fixed w-full top-0 z-50 bg-white/90 backdrop-blur-lg border-b border-gray-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-2">
+                    <svg class="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                    </svg>
+                    <span class="text-2xl font-bold gradient-text">SGAIP</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-gray-700 hover:text-primary-600 font-medium transition">Home</a>
+                    <a href="#features" class="text-gray-700 hover:text-primary-600 font-medium transition">Features</a>
+                    <a href="#roadmap" class="text-gray-700 hover:text-primary-600 font-medium transition">Roadmap</a>
+                    <a href="#quickstart" class="text-gray-700 hover:text-primary-600 font-medium transition">Get Started</a>
+                    <a href="#docs" class="text-gray-700 hover:text-primary-600 font-medium transition">Docs</a>
+                    <a href="https://github.com/k-kaundal/sgaip" target="_blank" class="text-gray-700 hover:text-primary-600 font-medium transition">GitHub</a>
+                </div>
+                <a href="#quickstart" class="hidden md:block bg-primary-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-primary-700 transition shadow-lg hover:shadow-xl">
+                    Start Building
+                </a>
+            </div>
+        </div>
     </nav>
 
     <!-- Hero Section -->
-    <header class="main-header" id="home">
-        <div class="container">
-            <h1>SGAIP</h1>
-            <p class="subtitle">Stateless Global Agent Identity Protocol</p>
-            <p style="color: rgba(255, 255, 255, 0.9); font-size: 1.1em; margin-bottom: 40px;">
-                Cryptographic identity for humans and AI agents without registries, blockchains, or centralized authorities
+    <section id="home" class="relative pt-24 pb-32 hero-gradient overflow-hidden">
+        <!-- Animated background -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute -top-1/2 -right-1/2 w-full h-full bg-blue-500 opacity-10 rounded-full blur-3xl animate-float"></div>
+            <div class="absolute -bottom-1/2 -left-1/2 w-full h-full bg-cyan-500 opacity-10 rounded-full blur-3xl animate-float" style="animation-delay: 1s;"></div>
+        </div>
+
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 text-center">
+            <!-- Badge -->
+            <div class="inline-flex items-center space-x-2 bg-white/20 glass px-4 py-2 rounded-full mb-8 animate-fade-in">
+                <span class="relative flex h-3 w-3">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                </span>
+                <span class="text-white font-medium">🚀 Roadmap to Production 2026-2028</span>
+            </div>
+
+            <!-- Main Heading -->
+            <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 animate-slide-up">
+                Quantum-Resistant<br/>
+                <span class="text-cyan-300">Identity Protocol</span>
+            </h1>
+            
+            <p class="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto animate-slide-up" style="animation-delay: 0.2s;">
+                Stateless, cryptographic identity for humans and AI agents.<br/>
+                No registries. No blockchains. No central authorities.
             </p>
-            <div class="cta-buttons">
-                <a href="#quickstart" class="btn btn-primary">Get Started</a>
-                <a href="https://github.com/k-kaundal/sgaip" class="btn btn-secondary" target="_blank">View on GitHub</a>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row justify-center gap-4 mb-12 animate-slide-up" style="animation-delay: 0.4s;">
+                <a href="#quickstart" class="bg-white text-primary-700 px-8 py-4 rounded-xl font-semibold hover:bg-blue-50 transition shadow-2xl hover:shadow-3xl text-lg">
+                    Get Started →
+                </a>
+                <a href="#roadmap" class="glass text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/20 transition text-lg">
+                    View Roadmap
+                </a>
+                <a href="https://github.com/k-kaundal/sgaip" target="_blank" class="glass text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/20 transition text-lg">
+                    <span class="flex items-center justify-center">
+                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                        GitHub
+                    </span>
+                </a>
+            </div>
+
+            <!-- Stats -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto animate-fade-in" style="animation-delay: 0.6s;">
+                <div class="glass rounded-xl p-4">
+                    <div class="text-3xl font-bold text-white">v0.1.x</div>
+                    <div class="text-blue-200 text-sm">Current Version</div>
+                </div>
+                <div class="glass rounded-xl p-4">
+                    <div class="text-3xl font-bold text-white">2028</div>
+                    <div class="text-blue-200 text-sm">Production Ready</div>
+                </div>
+                <div class="glass rounded-xl p-4">
+                    <div class="text-3xl font-bold text-white">PQC</div>
+                    <div class="text-blue-200 text-sm">Quantum Resistant</div>
+                </div>
+                <div class="glass rounded-xl p-4">
+                    <div class="text-3xl font-bold text-white">0</div>
+                    <div class="text-blue-200 text-sm">Dependencies</div>
+                </div>
             </div>
         </div>
-    </header>
+    </section>
 
-    <!-- Key Properties Section -->
-    <div class="container hero alt">
-        <h2 style="text-align: center; border: none; padding: 0;">Why SGAIP?</h2>
-        <p style="text-align: center; font-size: 1.1em; color: var(--text-dark); max-width: 800px; margin: 0 auto;">
-            SGAIP defines identity as a <strong>cryptographic proof</strong>, not a registry entry, ledger record, or platform account.
-        </p>
+    <!-- Alert Banner -->
+    <div class="bg-gradient-to-r from-amber-500 to-orange-500 text-white py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-center space-x-2 text-sm md:text-base">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                </svg>
+                <span class="font-semibold">⚠️ Quantum Vulnerability Warning:</span>
+                <span>SGAIP v1 uses Ed25519 (quantum-vulnerable). Migration to ML-DSA planned for 2027.</span>
+                <a href="#roadmap" class="underline hover:no-underline ml-2">View Migration Plan →</a>
+            </div>
+        </div>
     </div>
 
-    <!-- Main Content -->
-    <main class="container">
-        <!-- Features Section -->
-        <section id="features">
-            <h2>Core Features</h2>
-            <div class="features">
-                <div class="feature-card">
-                    <div class="feature-icon">🚫</div>
-                    <h3>Stateless</h3>
-                    <p>No registry, no ledger, no central authority. Pure cryptographic identity without intermediaries.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">✅</div>
-                    <h3>Offline Verifiable</h3>
-                    <p>Identity proofs work without internet access. Verify signatures anywhere, anytime.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔓</div>
-                    <h3>Permissionless</h3>
-                    <p>Anyone can create an identity instantly. No registration, no approval required.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🤖</div>
-                    <h3>AI-Native</h3>
-                    <p>Autonomous agents are first-class participants. Design for AI from the ground up.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔐</div>
-                    <h3>Cryptographically Derived</h3>
-                    <p>Identity is deterministic from a public key using only standard cryptography (Ed25519 + SHA-256).</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">⚙️</div>
-                    <h3>Implementable</h3>
-                    <p>Uses only standard cryptography. Reference implementations available in Python and JavaScript.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Quick Start Section -->
-        <section id="quickstart">
-            <h2>Quick Start</h2>
-            
-            <h3>Python Package</h3>
-            <p>Install from PyPI and start using SGAIP in seconds:</p>
-            <div class="code-block"><code>pip install sgaip
-sgaip keygen
-sgaip sign --private agent.sk --message "hello"
-sgaip verify --public agent.pk --signature signature.bin --message "hello"</code></div>
-            <p>📦 <strong><a href="https://pypi.org/project/sgaip/" target="_blank">Available on PyPI</a></strong></p>
-
-            <h3>JavaScript/TypeScript Package</h3>
-            <p>Or use the npm package:</p>
-            <div class="code-block"><code>npm install -g sgaip
-sgaip keygen
-sgaip sign --private agent.sk --message "hello"
-sgaip verify --public agent.pk --signature signature.bin --message "hello"</code></div>
-            <p>📦 <strong><a href="https://www.npmjs.com/package/sgaip" target="_blank">Available on npm</a></strong></p>
-
-            <div style="background: rgba(0, 212, 255, 0.1); border-left: 4px solid var(--accent-color); padding: 20px; margin: 30px 0; border-radius: var(--border-radius);">
-                <p><strong>💡 Tip:</strong> Both packages provide CLI tools and libraries for integration into your applications.</p>
-            </div>
-        </section>
-
-        <!-- What SGAIP Is NOT Section -->
-        <section>
-            <h2>What SGAIP Is <strong>Not</strong></h2>
-            <ul style="list-style: none; padding-left: 0;">
-                <li>❌ <strong>Not blockchain-based</strong> – Pure cryptography, no distributed ledger</li>
-                <li>❌ <strong>Not a registry or directory</strong> – Decentralized, no authority to query</li>
-                <li>❌ <strong>Not a token system</strong> – No financial or economic layer</li>
-                <li>❌ <strong>Not a platform or service</strong> – Open standard, not a business</li>
-                <li>❌ <strong>Identity ≠ trust</strong> – No reputation scoring or social graph</li>
-                <li>❌ <strong>Identity ≠ authorization</strong> – No built-in permission system</li>
-            </ul>
-        </section>
-
-        <!-- Documentation Section -->
-        <section id="documentation">
-            <h2>Documentation</h2>
-            
-            <h3>For Protocol Designers & Researchers</h3>
-            <div class="doc-grid">
-                <a href="https://github.com/k-kaundal/sgaip/blob/main/specs/sgaip-core.md" target="_blank" class="doc-card featured">
-                    <h3>Core Specification</h3>
-                    <p>Complete protocol definition and design principles.</p>
-                </a>
-                <a href="https://github.com/k-kaundal/sgaip/blob/main/specs/identity-derivation.md" target="_blank" class="doc-card">
-                    <h3>Identity Derivation</h3>
-                    <p>How Agent Identity Digits (AID) are computed from public keys.</p>
-                </a>
-                <a href="https://github.com/k-kaundal/sgaip/blob/main/specs/proof-protocol.md" target="_blank" class="doc-card">
-                    <h3>Proof Protocol</h3>
-                    <p>Signing, verification, and proof generation mechanisms.</p>
-                </a>
-                <a href="https://github.com/k-kaundal/sgaip/blob/main/specs/threat-model.md" target="_blank" class="doc-card">
-                    <h3>Threat Model</h3>
-                    <p>Security analysis, threat landscape, and mitigation strategies.</p>
-                </a>
-                <a href="https://github.com/k-kaundal/sgaip/blob/main/docs/terminology.md" target="_blank" class="doc-card">
-                    <h3>Terminology</h3>
-                    <p>Key terms and definitions for understanding SGAIP.</p>
-                </a>
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                    Why <span class="gradient-text">SGAIP?</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Identity as a <strong>cryptographic proof</strong>, not a registry entry or platform account.
+                </p>
             </div>
 
-            <h3 style="margin-top: 50px;">For Package Users</h3>
-            <div class="doc-grid">
-                <a href="https://github.com/k-kaundal/sgaip/tree/main/reference/python" target="_blank" class="doc-card">
-                    <h3>Python Implementation</h3>
-                    <p>Examples, CLI usage, and library documentation.</p>
-                </a>
-                <a href="https://github.com/k-kaundal/sgaip/tree/main/reference/js" target="_blank" class="doc-card">
-                    <h3>JavaScript Implementation</h3>
-                    <p>TypeScript types, npm package, and code examples.</p>
-                </a>
-                <a href="https://github.com/k-kaundal/sgaip/blob/main/test-vectors/sgaip-test-vectors.md" target="_blank" class="doc-card">
-                    <h3>Test Vectors</h3>
-                    <p>Interoperability test data for implementations.</p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature Card 1 -->
+                <div class="card-hover bg-white rounded-2xl p-8 border border-gray-200 shadow-lg">
+                    <div class="w-14 h-14 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Stateless</h3>
+                    <p class="text-gray-600">No registry, no ledger, no central authority. Pure cryptographic identity using only Ed25519 + SHA-256.</p>
+                </div>
+
+                <!-- Feature Card 2 -->
+                <div class="card-hover bg-white rounded-2xl p-8 border border-gray-200 shadow-lg">
+                    <div class="w-14 h-14 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Offline Verifiable</h3>
+                    <p class="text-gray-600">Verify identity proofs anywhere, anytime without internet access. Complete independence from external services.</p>
+                </div>
+
+                <!-- Feature Card 3 -->
+                <div class="card-hover bg-white rounded-2xl p-8 border border-gray-200 shadow-lg">
+                    <div class="w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Permissionless</h3>
+                    <p class="text-gray-600">Create identities instantly. No registration, no approval, no gatekeepers. Truly open and decentralized.</p>
+                </div>
+
+                <!-- Feature Card 4 -->
+                <div class="card-hover bg-white rounded-2xl p-8 border border-gray-200 shadow-lg">
+                    <div class="w-14 h-14 bg-gradient-to-br from-indigo-500 to-blue-500 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">AI-Native</h3>
+                    <p class="text-gray-600">Autonomous agents are first-class participants. Designed for AI from the ground up, not bolted on.</p>
+                </div>
+
+                <!-- Feature Card 5 -->
+                <div class="card-hover bg-white rounded-2xl p-8 border border-gray-200 shadow-lg">
+                    <div class="w-14 h-14 bg-gradient-to-br from-cyan-500 to-teal-500 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Future-Proof</h3>
+                    <p class="text-gray-600">Algorithm agility and post-quantum migration path. ML-DSA support by 2027 for quantum resistance.</p>
+                </div>
+
+                <!-- Feature Card 6 -->
+                <div class="card-hover bg-white rounded-2xl p-8 border border-gray-200 shadow-lg">
+                    <div class="w-14 h-14 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Implementable</h3>
+                    <p class="text-gray-600">Production-ready libraries in Python and JavaScript. Clear specs, test vectors, and comprehensive docs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Advanced Features Section -->
+    <section class="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                    <span class="gradient-text">Advanced Features</span> Coming Soon
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Next-generation cryptographic capabilities for privacy, security, and flexibility
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- ZKP Card -->
+                <div class="bg-white rounded-2xl p-8 shadow-xl border-2 border-cyan-200">
+                    <div class="flex items-start space-x-4 mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <span class="text-2xl">🎭</span>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Zero-Knowledge Proofs</h3>
+                            <span class="inline-block bg-cyan-100 text-cyan-800 text-xs px-3 py-1 rounded-full font-semibold">Research Phase</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">
+                        Prove identity possession without revealing it. Anonymous authentication, selective disclosure, and privacy-preserving credentials using Halo2 and STARKs.
+                    </p>
+                    <a href="https://github.com/k-kaundal/sgaip/blob/main/specs/zero-knowledge-proofs.md" target="_blank" class="text-cyan-600 hover:text-cyan-700 font-semibold inline-flex items-center">
+                        View Specification →
+                    </a>
+                </div>
+
+                <!-- Threshold Signatures Card -->
+                <div class="bg-white rounded-2xl p-8 shadow-xl border-2 border-purple-200">
+                    <div class="flex items-start space-x-4 mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-purple-400 to-pink-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <span class="text-2xl">🔐</span>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Threshold Signatures</h3>
+                            <span class="inline-block bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full font-semibold">Research Phase</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">
+                        M-of-N multi-party control using FROST. Organizational identities, social recovery, and fault-tolerant agent systems without single points of failure.
+                    </p>
+                    <a href="https://github.com/k-kaundal/sgaip/blob/main/specs/threshold-identities.md" target="_blank" class="text-purple-600 hover:text-purple-700 font-semibold inline-flex items-center">
+                        View Specification →
+                    </a>
+                </div>
+
+                <!-- Trust Layer Card -->
+                <div class="bg-white rounded-2xl p-8 shadow-xl border-2 border-green-200">
+                    <div class="flex items-start space-x-4 mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-green-400 to-emerald-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <span class="text-2xl">🤝</span>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Trust Statements</h3>
+                            <span class="inline-block bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full font-semibold">Specification Complete</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">
+                        Cryptographically signed trust assertions. Build reputation systems, delegation, certifications, and web-of-trust networks on top of SGAIP.
+                    </p>
+                    <a href="https://github.com/k-kaundal/sgaip/blob/main/specs/trust-statements.md" target="_blank" class="text-green-600 hover:text-green-700 font-semibold inline-flex items-center">
+                        View Specification →
+                    </a>
+                </div>
+
+                <!-- Algorithm Agility Card -->
+                <div class="bg-white rounded-2xl p-8 shadow-xl border-2 border-blue-200">
+                    <div class="flex items-start space-x-4 mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <span class="text-2xl">⚙️</span>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Algorithm Agility</h3>
+                            <span class="inline-block bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full font-semibold">In Development</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">
+                        SGAIP v2 with multi-algorithm support. Seamless migration from Ed25519 to ML-DSA (post-quantum) and beyond. Hybrid mode during transition.
+                    </p>
+                    <a href="https://github.com/k-kaundal/sgaip/blob/main/specs/algorithm-agility.md" target="_blank" class="text-blue-600 hover:text-blue-700 font-semibold inline-flex items-center">
+                        View Specification →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roadmap Timeline -->
+    <section id="roadmap" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                    Roadmap to <span class="gradient-text">Production</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+                    24-month transformation plan: Security hardening → Quantum resistance → Production deployment
+                </p>
+                <a href="https://github.com/k-kaundal/sgaip/blob/main/ROADMAP.md" target="_blank" class="inline-flex items-center space-x-2 bg-primary-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-700 transition shadow-lg">
+                    <span>View Full Roadmap</span>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
                 </a>
             </div>
-        </section>
 
-        <!-- Repository Structure Section -->
-        <section id="implementation">
-            <h2>Repository Structure</h2>
-            <div class="repo-structure">
-                <div class="folder">
-                    <span class="folder-icon">📁</span>
-                    <span class="folder-name">docs/</span>
-                    <span class="folder-desc" title="Terminology and concepts">Terminology and concepts</span>
-                </div>
-                <div class="folder">
-                    <span class="folder-icon">📁</span>
-                    <span class="folder-name">specs/</span>
-                    <span class="folder-desc" title="Protocol specifications">Protocol specifications</span>
-                    <div class="subfolder">
-                        <div class="file"><span class="file-icon">📄</span> sgaip-core.md <span class="file-desc">Core specification</span></div>
-                        <div class="file"><span class="file-icon">📄</span> identity-derivation.md <span class="file-desc">Identity derivation spec</span></div>
-                        <div class="file"><span class="file-icon">📄</span> proof-protocol.md <span class="file-desc">Proof/signature spec</span></div>
-                        <div class="file"><span class="file-icon">📄</span> threat-model.md <span class="file-desc">Security threat model</span></div>
+            <!-- Timeline -->
+            <div class="relative">
+                <div class="space-y-12">
+                    <!-- Phase 1 -->
+                    <div class="flex items-start space-x-6">
+                        <div class="flex-shrink-0">
+                            <div class="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center shadow-lg">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <div class="bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl p-6 border border-green-200">
+                                <div class="flex items-center justify-between mb-3">
+                                    <h3 class="text-2xl font-bold text-gray-900">Phase 1: Security & Foundation</h3>
+                                    <span class="bg-green-500 text-white text-sm px-4 py-1 rounded-full font-semibold">2026 Q1-Q3</span>
+                                </div>
+                                <ul class="space-y-2 text-gray-700">
+                                    <li class="flex items-start">
+                                        <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                        </svg>
+                                        <span><strong>Security Guide:</strong> Production security best practices</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                        </svg>
+                                        <span><strong>Test Vectors:</strong> Complete interoperability test suite</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="w-5 h-5 text-yellow-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                        </svg>
+                                        <span><strong>Security Audit:</strong> Professional audit Q3 2026 ($100K budget)</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Phase 2 -->
+                    <div class="flex items-start space-x-6">
+                        <div class="flex-shrink-0">
+                            <div class="w-16 h-16 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-full flex items-center justify-center shadow-lg animate-glow">
+                                <span class="text-2xl">⚛️</span>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <div class="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-2xl p-6 border border-blue-200">
+                                <div class="flex items-center justify-between mb-3">
+                                    <h3 class="text-2xl font-bold text-gray-900">Phase 2: Quantum-Resistant v2</h3>
+                                    <span class="bg-blue-500 text-white text-sm px-4 py-1 rounded-full font-semibold">2026 Q4 - 2027 Q2</span>
+                                </div>
+                                <ul class="space-y-2 text-gray-700">
+                                    <li class="flex items-start">
+                                        <svg class="w-5 h-5 text-blue-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                                        </svg>
+                                        <span><strong>ML-DSA Integration:</strong> NIST-standardized post-quantum signatures</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="w-5 h-5 text-blue-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                                        </svg>
+                                        <span><strong>Algorithm Agility:</strong> Multi-algorithm support, hybrid mode</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="w-5 h-5 text-blue-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                                        </svg>
+                                        <span><strong>Migration Tools:</strong> Seamless v1 → v2 transition path</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Phase 3 -->
+                    <div class="flex items-start space-x-6">
+                        <div class="flex-shrink-0">
+                            <div class="w-16 h-16 bg-gradient-to-br from-purple-400 to-pink-500 rounded-full flex items-center justify-center shadow-lg">
+                                <span class="text-2xl">🎭</span>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <div class="bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl p-6 border border-purple-200">
+                                <div class="flex items-center justify-between mb-3">
+                                    <h3 class="text-2xl font-bold text-gray-900">Phase 3: Advanced Cryptography</h3>
+                                    <span class="bg-purple-500 text-white text-sm px-4 py-1 rounded-full font-semibold">2027 Q2-Q4</span>
+                                </div>
+                                <ul class="space-y-2 text-gray-700">
+                                    <li class="flex items-start">
+                                        <svg class="w-5 h-5 text-purple-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                        </svg>
+                                        <span><strong>Zero-Knowledge Proofs:</strong> Anonymous authentication using Halo2</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="w-5 h-5 text-purple-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                        </svg>
+                                        <span><strong>Threshold Signatures:</strong> M-of-N control using FROST</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="w-5 h-5 text-purple-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                        </svg>
+                                        <span><strong>Privacy Features:</strong> Selective disclosure, unlinkable credentials</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Phase 4 -->
+                    <div class="flex items-start space-x-6">
+                        <div class="flex-shrink-0">
+                            <div class="w-16 h-16 bg-gradient-to-br from-indigo-400 to-blue-500 rounded-full flex items-center justify-center shadow-lg">
+                                <span class="text-2xl">🚀</span>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <div class="bg-gradient-to-r from-indigo-50 to-blue-50 rounded-2xl p-6 border border-indigo-200">
+                                <div class="flex items-center justify-between mb-3">
+                                    <h3 class="text-2xl font-bold text-gray-900">Phase 4-7: Ecosystem & Production</h3>
+                                    <span class="bg-indigo-500 text-white text-sm px-4 py-1 rounded-full font-semibold">2027 Q4 - 2028 Q4</span>
+                                </div>
+                                <ul class="space-y-2 text-gray-700">
+                                    <li class="flex items-start">
+                                        <svg class="w-5 h-5 text-indigo-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"/>
+                                        </svg>
+                                        <span><strong>SDKs & Integrations:</strong> iOS, Android, browser extensions</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="w-5 h-5 text-indigo-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"/>
+                                        </svg>
+                                        <span><strong>Standards:</strong> IETF Internet-Draft submission</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="w-5 h-5 text-indigo-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"/>
+                                        </svg>
+                                        <span><strong>Production Hardening:</strong> SOC 2 certification, performance optimization</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="folder">
-                    <span class="folder-icon">📁</span>
-                    <span class="folder-name">reference/</span>
-                    <span class="folder-desc" title="Reference implementations (production-ready)">Reference implementations (production-ready)</span>
-                    <div class="subfolder">
-                        <div class="folder"><span class="folder-icon">📁</span> python/ <span class="folder-desc">Python package + CLI</span></div>
-                        <div class="folder"><span class="folder-icon">📁</span> js/ <span class="folder-desc">TypeScript/JavaScript package + CLI</span></div>
+            </div>
+
+            <!-- Success Metrics -->
+            <div class="mt-16 bg-gradient-to-r from-gray-900 to-gray-800 rounded-2xl p-8 text-white">
+                <h3 class="text-2xl font-bold mb-6 text-center">🎯 Target: 2028 Q4</h3>
+                <div class="grid md:grid-cols-4 gap-6">
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-cyan-400 mb-2">0</div>
+                        <div class="text-gray-300 text-sm">Critical Vulnerabilities</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-green-400 mb-2">10+</div>
+                        <div class="text-gray-300 text-sm">Production Deployments</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-purple-400 mb-2">50K+</div>
+                        <div class="text-gray-300 text-sm">Downloads/Month</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-blue-400 mb-2">SOC 2</div>
+                        <div class="text-gray-300 text-sm">Certified</div>
                     </div>
                 </div>
-                <div class="folder">
-                    <span class="folder-icon">📁</span>
-                    <span class="folder-name">test-vectors/</span>
-                    <span class="folder-desc" title="Interoperability test data">Interoperability test data</span>
-                </div>
-                <div class="folder">
-                    <span class="folder-icon">📁</span>
-                    <span class="folder-name">cli/</span>
-                    <span class="folder-desc" title="Legacy Python CLI (see reference/python)">Legacy Python CLI (see reference/python)</span>
-                </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Status Section -->
-        <section>
-            <h2>Project Status</h2>
-            <p><strong>SGAIP is an early-stage protocol specification with production-ready reference implementations.</strong></p>
-            
-            <div style="margin: 30px 0;">
-                <p>
-                    <span class="status-badge complete">✅ Protocol specification complete</span>
-                    <span class="status-badge complete">✅ Reference implementations ready</span>
-                </p>
-                <p>
-                    <span class="status-badge complete">✅ Published on PyPI</span>
-                    <span class="status-badge complete">✅ Published on npm</span>
-                </p>
-                <p>
-                    <span class="status-badge complete">✅ Test suites and development guides</span>
-                    <span class="status-badge progress">⏳ Community review and feedback phase</span>
+    <!-- Quick Start Section -->
+    <section id="quickstart" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                    Get <span class="gradient-text">Started</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Install SGAIP and create your first identity in under a minute
                 </p>
             </div>
-        </section>
 
-        <!-- Call to Action -->
-        <section class="hero alt" style="text-align: center; margin-top: 60px;">
-            <h2 style="border: none; padding: 0;">Ready to Get Started?</h2>
-            <p style="font-size: 1.1em; margin-bottom: 30px;">Choose your language and start building with SGAIP today.</p>
-            <div class="cta-buttons">
-                <a href="https://pypi.org/project/sgaip/" class="btn btn-primary" target="_blank">Install Python Package</a>
-                <a href="https://www.npmjs.com/package/sgaip" class="btn btn-primary" target="_blank">Install npm Package</a>
-                <a href="https://github.com/k-kaundal/sgaip" class="btn btn-secondary" target="_blank">Explore on GitHub</a>
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Python -->
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-200">
+                    <div class="bg-gradient-to-r from-blue-600 to-cyan-600 px-6 py-4 flex items-center space-x-3">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M14.25.18l.9.2.73.26.59.3.45.32.34.34.25.34.16.33.1.3.04.26.02.2-.01.13V8.5l-.05.63-.13.55-.21.46-.26.38-.3.31-.33.25-.35.19-.35.14-.33.1-.3.07-.26.04-.21.02H8.77l-.69.05-.59.14-.5.22-.41.27-.33.32-.27.35-.2.36-.15.37-.1.35-.07.32-.04.27-.02.21v3.06H3.17l-.21-.03-.28-.07-.32-.12-.35-.18-.36-.26-.36-.36-.35-.46-.32-.59-.28-.73-.21-.88-.14-1.05-.05-1.23.06-1.22.16-1.04.24-.87.32-.71.36-.57.4-.44.42-.33.42-.24.4-.16.36-.1.32-.05.24-.01h.16l.06.01h8.16v-.83H6.18l-.01-2.75-.02-.37.05-.34.11-.31.17-.28.25-.26.31-.23.38-.2.44-.18.51-.15.58-.12.64-.1.71-.06.77-.04.84-.02 1.27.05zm-6.3 1.98l-.23.33-.08.41.08.41.23.34.33.22.41.09.41-.09.33-.22.23-.34.08-.41-.08-.41-.23-.33-.33-.22-.41-.09-.41.09zm13.09 3.95l.28.06.32.12.35.18.36.27.36.35.35.47.32.59.28.73.21.88.14 1.04.05 1.23-.06 1.23-.16 1.04-.24.86-.32.71-.36.57-.4.45-.42.33-.42.24-.4.16-.36.09-.32.05-.24.02-.16-.01h-8.22v.82h5.84l.01 2.76.02.36-.05.34-.11.31-.17.29-.25.25-.31.24-.38.2-.44.17-.51.15-.58.13-.64.09-.71.07-.77.04-.84.01-1.27-.04-1.07-.14-.9-.2-.73-.25-.59-.3-.45-.33-.34-.34-.25-.34-.16-.33-.1-.3-.04-.25-.02-.2.01-.13v-5.34l.05-.64.13-.54.21-.46.26-.38.3-.32.33-.24.35-.2.35-.14.33-.1.3-.06.26-.04.21-.02.13-.01h5.84l.69-.05.59-.14.5-.21.41-.28.33-.32.27-.35.2-.36.15-.36.1-.35.07-.32.04-.28.02-.21V6.07h2.09l.14.01zm-6.47 14.25l-.23.33-.08.41.08.41.23.33.33.23.41.08.41-.08.33-.23.23-.33.08-.41-.08-.41-.23-.33-.33-.23-.41-.08-.41.08z"/>
+                        </svg>
+                        <h3 class="text-2xl font-bold text-white">Python</h3>
+                    </div>
+                    <div class="p-6">
+                        <pre class="bg-gray-900 text-green-400 p-4 rounded-lg overflow-x-auto text-sm font-mono mb-4"><code># Install from PyPI
+pip install sgaip
+
+# Generate keys
+sgaip keygen
+
+# Sign a message
+sgaip sign --private agent.sk --message "hello"
+
+# Verify signature
+sgaip verify --public agent.pk \
+  --signature sig.bin --message "hello"</code></pre>
+                        <div class="flex items-center justify-between">
+                            <a href="https://pypi.org/project/sgaip/" target="_blank" class="text-blue-600 hover:text-blue-700 font-semibold inline-flex items-center">
+                                📦 PyPI Package →
+                            </a>
+                            <a href="https://github.com/k-kaundal/sgaip/tree/main/reference/python" target="_blank" class="text-gray-600 hover:text-gray-700 font-semibold">
+                                Documentation
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- JavaScript -->
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-200">
+                    <div class="bg-gradient-to-r from-yellow-500 to-amber-500 px-6 py-4 flex items-center space-x-3">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M0 0h24v24H0V0zm22.034 18.276c-.175-1.095-.888-2.015-3.003-2.873-.736-.345-1.554-.585-1.797-1.14-.091-.33-.105-.51-.046-.705.15-.646.915-.84 1.515-.66.39.12.75.42.976.9 1.034-.676 1.034-.676 1.755-1.125-.27-.42-.404-.601-.586-.78-.63-.705-1.469-1.065-2.834-1.034l-.705.089c-.676.165-1.32.525-1.71 1.005-1.14 1.291-.811 3.541.569 4.471 1.365 1.02 3.361 1.244 3.616 2.205.24 1.17-.87 1.545-1.966 1.41-.811-.18-1.26-.586-1.755-1.336l-1.83 1.051c.21.48.45.689.81 1.109 1.74 1.756 6.09 1.666 6.871-1.004.029-.09.24-.705.074-1.65l.046.067zm-8.983-7.245h-2.248c0 1.938-.009 3.864-.009 5.805 0 1.232.063 2.363-.138 2.711-.33.689-1.18.601-1.566.48-.396-.196-.597-.466-.83-.855-.063-.105-.11-.196-.127-.196l-1.825 1.125c.305.63.75 1.172 1.324 1.517.855.51 2.004.675 3.207.405.783-.226 1.458-.691 1.811-1.411.51-.93.402-2.07.397-3.346.012-2.054 0-4.109 0-6.179l.004-.056z"/>
+                        </svg>
+                        <h3 class="text-2xl font-bold text-white">JavaScript / TypeScript</h3>
+                    </div>
+                    <div class="p-6">
+                        <pre class="bg-gray-900 text-green-400 p-4 rounded-lg overflow-x-auto text-sm font-mono mb-4"><code># Install from npm
+npm install -g sgaip
+
+# Generate keys
+sgaip keygen
+
+# Sign a message
+sgaip sign --private agent.sk --message "hello"
+
+# Verify signature
+sgaip verify --public agent.pk \
+  --signature sig.bin --message "hello"</code></pre>
+                        <div class="flex items-center justify-between">
+                            <a href="https://www.npmjs.com/package/sgaip" target="_blank" class="text-yellow-600 hover:text-yellow-700 font-semibold inline-flex items-center">
+                                📦 npm Package →
+                            </a>
+                            <a href="https://github.com/k-kaundal/sgaip/tree/main/reference/js" target="_blank" class="text-gray-600 hover:text-gray-700 font-semibold">
+                                Documentation
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </section>
-    </main>
+
+            <!-- Library Usage Example -->
+            <div class="mt-12 bg-white rounded-2xl shadow-xl p-8 border border-gray-200">
+                <h3 class="text-2xl font-bold text-gray-900 mb-6">Library Usage Example</h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="text-lg font-semibold text-gray-700 mb-3 flex items-center">
+                            <svg class="w-5 h-5 mr-2 text-blue-600" fill="currentColor" viewBox="0 0 24 24"><path d="M14.25.18l.9.2.73.26.59.3.45.32.34.34.25.34.16.33.1.3.04.26.02.2-.01.13V8.5l-.05.63-.13.55-.21.46-.26.38-.3.31-.33.25-.35.19-.35.14-.33.1-.3.07-.26.04-.21.02H8.77l-.69.05-.59.14-.5.22-.41.27-.33.32-.27.35-.2.36-.15.37-.1.35-.07.32-.04.27-.02.21v3.06H3.17l-.21-.03-.28-.07-.32-.12-.35-.18-.36-.26-.36-.36-.35-.46-.32-.59-.28-.73-.21-.88-.14-1.05-.05-1.23.06-1.22.16-1.04.24-.87.32-.71.36-.57.4-.44.42-.33.42-.24.4-.16.36-.1.32-.05.24-.01h.16l.06.01h8.16v-.83H6.18l-.01-2.75-.02-.37.05-.34.11-.31.17-.28.25-.26.31-.23.38-.2.44-.18.51-.15.58-.12.64-.1.71-.06.77-.04.84-.02 1.27.05zm-6.3 1.98l-.23.33-.08.41.08.41.23.34.33.22.41.09.41-.09.33-.22.23-.34.08-.41-.08-.41-.23-.33-.33-.22-.41-.09-.41.09zm13.09 3.95l.28.06.32.12.35.18.36.27.36.35.35.47.32.59.28.73.21.88.14 1.04.05 1.23-.06 1.23-.16 1.04-.24.86-.32.71-.36.57-.4.45-.42.33-.42.24-.4.16-.36.09-.32.05-.24.02-.16-.01h-8.22v.82h5.84l.01 2.76.02.36-.05.34-.11.31-.17.29-.25.25-.31.24-.38.2-.44.17-.51.15-.58.13-.64.09-.71.07-.77.04-.84.01-1.27-.04-1.07-.14-.9-.2-.73-.25-.59-.3-.45-.33-.34-.34-.25-.34-.16-.33-.1-.3-.04-.25-.02-.2.01-.13v-5.34l.05-.64.13-.54.21-.46.26-.38.3-.32.33-.24.35-.2.35-.14.33-.1.3-.06.26-.04.21-.02.13-.01h5.84l.69-.05.59-.14.5-.21.41-.28.33-.32.27-.35.2-.36.15-.36.1-.35.07-.32.04-.28.02-.21V6.07h2.09l.14.01zm-6.47 14.25l-.23.33-.08.41.08.41.23.33.33.23.41.08.41-.08.33-.23.23-.33.08-.41-.08-.41-.23-.33-.33-.23-.41-.08-.41.08z"/></svg>
+                            Python
+                        </h4>
+                        <pre class="bg-gray-50 p-4 rounded-lg text-sm overflow-x-auto"><code class="text-gray-800">from sgaip import generate_keypair, \
+    derive_aid, create_proof
+
+# Generate identity
+private_key, public_key = generate_keypair()
+aid = derive_aid(public_key)
+
+# Create proof
+challenge = b"random_challenge"
+proof = create_proof(private_key, challenge)
+print(f"AID: {aid}")</code></pre>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold text-gray-700 mb-3 flex items-center">
+                            <svg class="w-5 h-5 mr-2 text-yellow-600" fill="currentColor" viewBox="0 0 24 24"><path d="M0 0h24v24H0V0zm22.034 18.276c-.175-1.095-.888-2.015-3.003-2.873-.736-.345-1.554-.585-1.797-1.14-.091-.33-.105-.51-.046-.705.15-.646.915-.84 1.515-.66.39.12.75.42.976.9 1.034-.676 1.034-.676 1.755-1.125-.27-.42-.404-.601-.586-.78-.63-.705-1.469-1.065-2.834-1.034l-.705.089c-.676.165-1.32.525-1.71 1.005-1.14 1.291-.811 3.541.569 4.471 1.365 1.02 3.361 1.244 3.616 2.205.24 1.17-.87 1.545-1.966 1.41-.811-.18-1.26-.586-1.755-1.336l-1.83 1.051c.21.48.45.689.81 1.109 1.74 1.756 6.09 1.666 6.871-1.004.029-.09.24-.705.074-1.65l.046.067zm-8.983-7.245h-2.248c0 1.938-.009 3.864-.009 5.805 0 1.232.063 2.363-.138 2.711-.33.689-1.18.601-1.566.48-.396-.196-.597-.466-.83-.855-.063-.105-.11-.196-.127-.196l-1.825 1.125c.305.63.75 1.172 1.324 1.517.855.51 2.004.675 3.207.405.783-.226 1.458-.691 1.811-1.411.51-.93.402-2.07.397-3.346.012-2.054 0-4.109 0-6.179l.004-.056z"/></svg>
+                            TypeScript
+                        </h4>
+                        <pre class="bg-gray-50 p-4 rounded-lg text-sm overflow-x-auto"><code class="text-gray-800">import { generateKeyPair, deriveAID, 
+    createProof } from 'sgaip';
+
+// Generate identity
+const { privateKey, publicKey } = 
+    generateKeyPair();
+const aid = deriveAID(publicKey);
+
+// Create proof
+const challenge = Buffer.from('random');
+const proof = createProof(privateKey, challenge);
+console.log(`AID: ${aid}`);</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Documentation Section -->
+    <section id="docs" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                    <span class="gradient-text">Documentation</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Comprehensive specifications, guides, and references
+                </p>
+            </div>
+
+            <!-- Core Specifications -->
+            <div class="mb-12">
+                <h3 class="text-2xl font-bold text-gray-900 mb-6">Core Specifications</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <a href="https://github.com/k-kaundal/sgaip/blob/main/specs/sgaip-core.md" target="_blank" class="card-hover bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-6 border-2 border-blue-200 group">
+                        <div class="text-3xl mb-3">📘</div>
+                        <h4 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-600">Core Protocol</h4>
+                        <p class="text-gray-600 text-sm">Complete protocol definition and design principles</p>
+                    </a>
+                    <a href="https://github.com/k-kaundal/sgaip/blob/main/specs/identity-derivation.md" target="_blank" class="card-hover bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-6 border-2 border-green-200 group">
+                        <div class="text-3xl mb-3">🔑</div>
+                        <h4 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-green-600">Identity Derivation</h4>
+                        <p class="text-gray-600 text-sm">How AIDs are computed from public keys</p>
+                    </a>
+                    <a href="https://github.com/k-kaundal/sgaip/blob/main/specs/proof-protocol.md" target="_blank" class="card-hover bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-6 border-2 border-purple-200 group">
+                        <div class="text-3xl mb-3">✍️</div>
+                        <h4 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-purple-600">Proof Protocol</h4>
+                        <p class="text-gray-600 text-sm">Signing and verification mechanisms</p>
+                    </a>
+                    <a href="https://github.com/k-kaundal/sgaip/blob/main/specs/threat-model.md" target="_blank" class="card-hover bg-gradient-to-br from-red-50 to-orange-50 rounded-xl p-6 border-2 border-red-200 group">
+                        <div class="text-3xl mb-3">🛡️</div>
+                        <h4 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-red-600">Threat Model</h4>
+                        <p class="text-gray-600 text-sm">Security analysis and mitigation strategies</p>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Advanced Specs -->
+            <div class="mb-12">
+                <h3 class="text-2xl font-bold text-gray-900 mb-6">Advanced Specifications</h3>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <a href="https://github.com/k-kaundal/sgaip/blob/main/specs/post-quantum-analysis.md" target="_blank" class="card-hover bg-white rounded-xl p-6 border-2 border-cyan-200 group">
+                        <div class="text-3xl mb-3">⚛️</div>
+                        <h4 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-cyan-600">Post-Quantum Analysis</h4>
+                        <p class="text-gray-600 text-sm">Quantum threat assessment and ML-DSA migration plan</p>
+                    </a>
+                    <a href="https://github.com/k-kaundal/sgaip/blob/main/specs/algorithm-agility.md" target="_blank" class="card-hover bg-white rounded-xl p-6 border-2 border-blue-200 group">
+                        <div class="text-3xl mb-3">⚙️</div>
+                        <h4 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-600">Algorithm Agility</h4>
+                        <p class="text-gray-600 text-sm">Multi-algorithm support and v2 protocol</p>
+                    </a>
+                    <a href="https://github.com/k-kaundal/sgaip/blob/main/specs/key-format.md" target="_blank" class="card-hover bg-white rounded-xl p-6 border-2 border-green-200 group">
+                        <div class="text-3xl mb-3">🔐</div>
+                        <h4 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-green-600">Key Format</h4>
+                        <p class="text-gray-600 text-sm">Canonical serialization formats</p>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Security & Guides -->
+            <div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-6">Security & Guides</h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <a href="https://github.com/k-kaundal/sgaip/blob/main/docs/security-guide.md" target="_blank" class="card-hover bg-gradient-to-br from-red-500 to-orange-500 text-white rounded-xl p-8 shadow-xl group">
+                        <div class="text-4xl mb-4">🔒</div>
+                        <h4 class="text-2xl font-bold mb-3">Security Guide</h4>
+                        <p class="text-white/90 mb-4">Production security best practices, key management, and operational security</p>
+                        <span class="inline-flex items-center text-white font-semibold">
+                            Read Guide
+                            <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </span>
+                    </a>
+                    <a href="https://github.com/k-kaundal/sgaip/blob/main/ROADMAP.md" target="_blank" class="card-hover bg-gradient-to-br from-blue-500 to-purple-500 text-white rounded-xl p-8 shadow-xl group">
+                        <div class="text-4xl mb-4">🗺️</div>
+                        <h4 class="text-2xl font-bold mb-3">Full Roadmap</h4>
+                        <p class="text-white/90 mb-4">Complete 24-month plan: security, PQC, advanced features, and production deployment</p>
+                        <span class="inline-flex items-center text-white font-semibold">
+                            View Roadmap
+                            <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What SGAIP is NOT -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-2xl p-8 md:p-12 shadow-xl border border-gray-200">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-8 text-center">
+                    What SGAIP is <span class="text-red-600">NOT</span>
+                </h2>
+                <div class="grid md:grid-cols-2 gap-6 text-lg">
+                    <div class="flex items-start space-x-3">
+                        <div class="text-2xl">❌</div>
+                        <div>
+                            <strong class="text-gray-900">Not blockchain-based</strong>
+                            <p class="text-gray-600 text-base">Pure cryptography, no distributed ledger</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <div class="text-2xl">❌</div>
+                        <div>
+                            <strong class="text-gray-900">Not a registry</strong>
+                            <p class="text-gray-600 text-base">Decentralized, no authority to query</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <div class="text-2xl">❌</div>
+                        <div>
+                            <strong class="text-gray-900">Not a token system</strong>
+                            <p class="text-gray-600 text-base">No financial or economic layer</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <div class="text-2xl">❌</div>
+                        <div>
+                            <strong class="text-gray-900">Not a platform</strong>
+                            <p class="text-gray-600 text-base">Open standard, not a business</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <div class="text-2xl">⚠️</div>
+                        <div>
+                            <strong class="text-gray-900">Identity ≠ Trust</strong>
+                            <p class="text-gray-600 text-base">No reputation scoring (see Trust Layer spec)</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <div class="text-2xl">⚠️</div>
+                        <div>
+                            <strong class="text-gray-900">Identity ≠ Authorization</strong>
+                            <p class="text-gray-600 text-base">No built-in permission system</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-20 hero-gradient text-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6">
+                Ready to Build the<br/>
+                <span class="text-cyan-300">Future of Identity?</span>
+            </h2>
+            <p class="text-xl text-blue-100 mb-10 max-w-2xl mx-auto">
+                Join us in creating a quantum-resistant, decentralized identity protocol for AI agents and humans.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#quickstart" class="bg-white text-primary-700 px-10 py-4 rounded-xl font-bold hover:bg-blue-50 transition shadow-2xl text-lg">
+                    Install Now →
+                </a>
+                <a href="https://github.com/k-kaundal/sgaip" target="_blank" class="glass text-white px-10 py-4 rounded-xl font-bold hover:bg-white/20 transition text-lg">
+                    Star on GitHub ⭐
+                </a>
+            </div>
+            <p class="mt-8 text-blue-200">
+                💬 Questions? <a href="https://github.com/k-kaundal/sgaip/discussions" target="_blank" class="underline hover:text-white">Join the Discussion</a>
+            </p>
+        </div>
+    </section>
 
     <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-links">
-                <a href="https://github.com/k-kaundal/sgaip" target="_blank">GitHub Repository</a>
-                <a href="https://github.com/k-kaundal/sgaip/issues" target="_blank">Report Issues</a>
-                <a href="https://github.com/k-kaundal/sgaip/discussions" target="_blank">Discussions</a>
+    <footer class="bg-gray-900 text-gray-300 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-white font-bold text-lg mb-4 flex items-center">
+                        <svg class="w-6 h-6 mr-2 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                        </svg>
+                        SGAIP
+                    </h3>
+                    <p class="text-sm">Quantum-resistant identity for the next generation of AI agents and humans.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Resources</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="https://github.com/k-kaundal/sgaip/blob/main/specs/sgaip-core.md" target="_blank" class="hover:text-white transition">Documentation</a></li>
+                        <li><a href="https://github.com/k-kaundal/sgaip/blob/main/ROADMAP.md" target="_blank" class="hover:text-white transition">Roadmap</a></li>
+                        <li><a href="https://github.com/k-kaundal/sgaip/blob/main/docs/security-guide.md" target="_blank" class="hover:text-white transition">Security Guide</a></li>
+                        <li><a href="https://github.com/k-kaundal/sgaip/blob/main/DEVELOPMENT.md" target="_blank" class="hover:text-white transition">Contributing</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Packages</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="https://pypi.org/project/sgaip/" target="_blank" class="hover:text-white transition">Python (PyPI)</a></li>
+                        <li><a href="https://www.npmjs.com/package/sgaip" target="_blank" class="hover:text-white transition">JavaScript (npm)</a></li>
+                        <li><a href="https://github.com/k-kaundal/sgaip/tree/main/reference/python" target="_blank" class="hover:text-white transition">Python Docs</a></li>
+                        <li><a href="https://github.com/k-kaundal/sgaip/tree/main/reference/js" target="_blank" class="hover:text-white transition">JS/TS Docs</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Community</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="https://github.com/k-kaundal/sgaip" target="_blank" class="hover:text-white transition">GitHub</a></li>
+                        <li><a href="https://github.com/k-kaundal/sgaip/issues" target="_blank" class="hover:text-white transition">Issues</a></li>
+                        <li><a href="https://github.com/k-kaundal/sgaip/discussions" target="_blank" class="hover:text-white transition">Discussions</a></li>
+                        <li><a href="https://github.com/k-kaundal/sgaip/blob/main/LICENSE" target="_blank" class="hover:text-white transition">MIT License</a></li>
+                    </ul>
+                </div>
             </div>
-            <p>&copy; 2025 SGAIP Contributors. Licensed under MIT.</p>
-            <p style="font-size: 0.9em; margin-top: 10px;">
-                Stateless Global Agent Identity Protocol — 
-                <a href="https://github.com/k-kaundal/sgaip/blob/main/LICENSE" target="_blank">View License</a>
-            </p>
+            <div class="border-t border-gray-800 pt-8 text-center text-sm">
+                <p>&copy; 2026 SGAIP Contributors. Licensed under <a href="https://github.com/k-kaundal/sgaip/blob/main/LICENSE" target="_blank" class="underline hover:text-white">MIT</a>.</p>
+                <p class="mt-2 text-gray-500">Stateless Global Agent Identity Protocol — Building the future of cryptographic identity</p>
+            </div>
         </div>
     </footer>
 
+    <!-- Scroll to top button -->
+    <button id="scrollTop" class="hidden fixed bottom-8 right-8 bg-primary-600 text-white p-4 rounded-full shadow-2xl hover:bg-primary-700 transition-all hover:scale-110 z-40">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
+        </svg>
+    </button>
+
     <script>
-        // Smooth scrolling for anchor links
+        // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 const href = this.getAttribute('href');
                 if (href !== '#' && document.querySelector(href)) {
                     e.preventDefault();
                     const target = document.querySelector(href);
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    const offset = 80; // Account for fixed nav
+                    const targetPosition = target.offsetTop - offset;
+                    window.scrollTo({ top: targetPosition, behavior: 'smooth' });
                 }
             });
         });
 
-        // Scroll to home on logo click
-        const homeLink = document.querySelector('a[href="#home"]');
-        if (homeLink) {
-            homeLink.addEventListener('click', function (e) {
-                e.preventDefault();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+        // Scroll to top button
+        const scrollTopBtn = document.getElementById('scrollTop');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.remove('hidden');
+            } else {
+                scrollTopBtn.classList.add('hidden');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in');
+                }
             });
-        }
+        }, observerOptions);
+
+        document.querySelectorAll('.card-hover').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>

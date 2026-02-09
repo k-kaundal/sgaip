@@ -1,234 +1,476 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="About SGAIP - Learn about the Stateless Global Agent Identity Protocol">
+    <meta name="description" content="About SGAIP - Learn about the quantum-resistant Stateless Global Agent Identity Protocol">
     <title>About - SGAIP</title>
-    <link rel="stylesheet" href="assets/css/style.css">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            500: '#0073ff',
+                            600: '#005ccc',
+                            700: '#004599',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-text {
+            background: linear-gradient(135deg, #0ea5e9 0%, #3b82f6 50%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 25%, #3b82f6 50%, #0ea5e9 75%, #06b6d4 100%);
+        }
+    </style>
 </head>
-<body>
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="index.html#features">Features</a></li>
-            <li><a href="start.html">Get Started</a></li>
-            <li><a href="specs.html">Specs</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="https://github.com/k-kaundal/sgaip" target="_blank">GitHub</a></li>
-        </ul>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="fixed w-full top-0 z-50 bg-white/90 backdrop-blur-lg border-b border-gray-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-2">
+                    <svg class="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                    </svg>
+                    <span class="text-2xl font-bold gradient-text">SGAIP</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-primary-600 font-medium transition">Home</a>
+                    <a href="index.html#features" class="text-gray-700 hover:text-primary-600 font-medium transition">Features</a>
+                    <a href="index.html#roadmap" class="text-gray-700 hover:text-primary-600 font-medium transition">Roadmap</a>
+                    <a href="start.html" class="text-gray-700 hover:text-primary-600 font-medium transition">Get Started</a>
+                    <a href="about.html" class="text-primary-600 font-semibold">About</a>
+                    <a href="https://github.com/k-kaundal/sgaip" target="_blank" class="text-gray-700 hover:text-primary-600 font-medium transition">GitHub</a>
+                </div>
+            </div>
+        </div>
     </nav>
 
-    <header>
-        <div class="container">
-            <h1>About SGAIP</h1>
-            <p class="subtitle">Understanding stateless identity</p>
+    <!-- Hero -->
+    <section class="relative pt-24 pb-20 hero-gradient">
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 text-center">
+            <h1 class="text-5xl md:text-6xl font-bold text-white mb-6">
+                About <span class="text-cyan-300">SGAIP</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto">
+                Understanding stateless, quantum-resistant identity
+            </p>
         </div>
-    </header>
+    </section>
 
-    <main class="container">
-        <section>
-            <h2>What is SGAIP?</h2>
-            <p>
-                <strong>SGAIP (Stateless Global Agent Identity Protocol)</strong> is a cryptographic protocol that enables 
-                global, offline-verifiable identity for humans and AI agents without requiring any form of central authority, 
-                registry, or blockchain.
-            </p>
-            <p>
-                At its core, SGAIP answers a fundamental question: <em>How can we prove identity without relying on a 
-                central authority?</em> The answer is through cryptography.
-            </p>
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        
+        <!-- What is SGAIP -->
+        <section class="mb-20">
+            <div class="bg-white rounded-2xl p-8 md:p-12 shadow-xl">
+                <h2 class="text-4xl font-bold text-gray-900 mb-6">What is SGAIP?</h2>
+                <p class="text-lg text-gray-700 mb-6">
+                    <strong class="text-primary-600">SGAIP (Stateless Global Agent Identity Protocol)</strong> is a cryptographic protocol that enables 
+                    global, offline-verifiable identity for humans and AI agents without requiring any form of central authority, 
+                    registry, or blockchain.
+                </p>
+                <p class="text-lg text-gray-700">
+                    At its core, SGAIP answers a fundamental question: <em class="text-primary-600">How can we prove identity without relying on a 
+                    central authority?</em> The answer is through cryptography.
+                </p>
+            </div>
         </section>
 
-        <section>
-            <h2>The Problem SGAIP Solves</h2>
-            <div class="features">
-                <div class="feature-card">
-                    <h3>Registry Dependency</h3>
-                    <p>Traditional identity systems require a registry—a government body, company database, or blockchain—to maintain records. This creates a single point of failure and requires trust in a centralized authority.</p>
+        <!-- Problems Solved -->
+        <section class="mb-20">
+            <h2 class="text-4xl font-bold text-gray-900 mb-8 text-center">The Problem SGAIP Solves</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-gradient-to-br from-red-50 to-orange-50 rounded-2xl p-8 border-2 border-red-200">
+                    <div class="w-12 h-12 bg-red-500 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Registry Dependency</h3>
+                    <p class="text-gray-700">Traditional identity systems require a registry—a government body, company database, or blockchain—to maintain records. This creates a single point of failure and requires trust in a centralized authority.</p>
                 </div>
-                <div class="feature-card">
-                    <h3>Online Verification</h3>
-                    <p>Most identity systems require you to be online to verify someone's identity. You need network access to query a database or blockchain.</p>
+
+                <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-8 border-2 border-blue-200">
+                    <div class="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Online Verification</h3>
+                    <p class="text-gray-700">Most identity systems require you to be online to verify someone's identity. You need network access to query a database or blockchain.</p>
                 </div>
-                <div class="feature-card">
-                    <h3>AI Agent Identity</h3>
-                    <p>Current systems weren't designed for autonomous agents. There's no standard way for AI systems to establish and prove identity without going through human-centric processes.</p>
+
+                <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-8 border-2 border-purple-200">
+                    <div class="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">AI Agent Identity</h3>
+                    <p class="text-gray-700">Current systems weren't designed for autonomous agents. There's no standard way for AI systems to establish and prove identity without going through human-centric processes.</p>
                 </div>
-                <div class="feature-card">
-                    <h3>Interoperability</h3>
-                    <p>Different platforms and systems use different identity mechanisms. There's no interoperable standard for proving identity across platforms.</p>
+
+                <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-8 border-2 border-green-200">
+                    <div class="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Interoperability</h3>
+                    <p class="text-gray-700">Different platforms and systems use different identity mechanisms. There's no interoperable standard for proving identity across platforms.</p>
                 </div>
             </div>
         </section>
 
-        <section>
-            <h2>How SGAIP Works</h2>
-            <p>SGAIP works by deriving identity from cryptographic keys in a completely deterministic way:</p>
-            
-            <ol>
-                <li><strong>Key Generation:</strong> Generate a public-private key pair using Ed25519</li>
-                <li><strong>Identity Derivation:</strong> Compute your identity (Agent Identity Digit/AID) by hashing your public key</li>
-                <li><strong>Proof Creation:</strong> Sign any message with your private key to create a cryptographic proof</li>
-                <li><strong>Verification:</strong> Anyone can verify the proof using your public key—no registry needed</li>
-            </ol>
+        <!-- How It Works -->
+        <section class="mb-20">
+            <div class="bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl p-8 md:p-12 text-white shadow-2xl">
+                <h2 class="text-4xl font-bold mb-6">How SGAIP Works</h2>
+                <p class="text-xl mb-8 text-blue-100">SGAIP derives identity from cryptographic keys in a completely deterministic way:</p>
+                
+                <div class="space-y-6">
+                    <div class="flex items-start space-x-4">
+                        <div class="flex-shrink-0 w-10 h-10 bg-white text-blue-600 rounded-full flex items-center justify-center font-bold text-lg">1</div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">Key Generation</h3>
+                            <p class="text-blue-100">Generate a public-private key pair using Ed25519</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4">
+                        <div class="flex-shrink-0 w-10 h-10 bg-white text-blue-600 rounded-full flex items-center justify-center font-bold text-lg">2</div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">Identity Derivation</h3>
+                            <p class="text-blue-100">Compute your identity (Agent Identity Digit/AID) by hashing your public key</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4">
+                        <div class="flex-shrink-0 w-10 h-10 bg-white text-blue-600 rounded-full flex items-center justify-center font-bold text-lg">3</div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">Proof Creation</h3>
+                            <p class="text-blue-100">Sign any message with your private key to create a cryptographic proof</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4">
+                        <div class="flex-shrink-0 w-10 h-10 bg-white text-blue-600 rounded-full flex items-center justify-center font-bold text-lg">4</div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">Verification</h3>
+                            <p class="text-blue-100">Anyone can verify the proof using your public key—no registry needed</p>
+                        </div>
+                    </div>
+                </div>
 
-            <div style="background: rgba(0, 212, 255, 0.1); border-left: 4px solid var(--accent-color); padding: 20px; margin: 30px 0; border-radius: var(--border-radius);">
-                <p><strong>Key Insight:</strong> Your identity is not stored anywhere. It's calculated from your public key. The same calculation always produces the same identity. This means your identity is <em>portable</em> and <em>verifiable</em> anywhere without asking any authority.</p>
+                <div class="mt-8 bg-white/20 backdrop-blur-sm rounded-xl p-6 border border-white/30">
+                    <p class="text-lg"><strong class="text-cyan-200">🔑 Key Insight:</strong> Your identity is not stored anywhere. It's calculated from your public key. The same calculation always produces the same identity. This means your identity is <em>portable</em> and <em>verifiable</em> anywhere without asking any authority.</p>
+                </div>
             </div>
         </section>
 
-        <section>
-            <h2>Key Differences from Other Systems</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Feature</th>
-                        <th>SGAIP</th>
-                        <th>Traditional Registry</th>
-                        <th>Blockchain</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Registry Required</strong></td>
-                        <td>❌ No</td>
-                        <td>✅ Yes</td>
-                        <td>✅ Yes (distributed)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Offline Verification</strong></td>
-                        <td>✅ Full</td>
-                        <td>❌ No</td>
-                        <td>❌ No</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Central Authority</strong></td>
-                        <td>❌ None</td>
-                        <td>✅ Required</td>
-                        <td>❌ None (consensus-based)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Permissionless</strong></td>
-                        <td>✅ Instant</td>
-                        <td>❌ No (approval needed)</td>
-                        <td>✅ Yes</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Cost</strong></td>
-                        <td>❌ CPU only</td>
-                        <td>💰 High (operational costs)</td>
-                        <td>💰 High (transaction fees)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>AI-Native</strong></td>
-                        <td>✅ Designed for agents</td>
-                        <td>❌ Human-centric</td>
-                        <td>❌ Human-centric</td>
-                    </tr>
-                </tbody>
-            </table>
+        <!-- Comparison Table -->
+        <section class="mb-20">
+            <h2 class="text-4xl font-bold text-gray-900 mb-8 text-center">Key Differences from Other Systems</h2>
+            <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead class="bg-gradient-to-r from-gray-900 to-gray-800 text-white">
+                            <tr>
+                                <th class="px-6 py-4 text-left font-semibold">Feature</th>
+                                <th class="px-6 py-4 text-left font-semibold">SGAIP</th>
+                                <th class="px-6 py-4 text-left font-semibold">Traditional Registry</th>
+                                <th class="px-6 py-4 text-left font-semibold">Blockchain</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 font-semibold text-gray-900">Registry Required</td>
+                                <td class="px-6 py-4 text-green-600 font-semibold">❌ No</td>
+                                <td class="px-6 py-4 text-red-600 font-semibold">✅ Yes</td>
+                                <td class="px-6 py-4 text-amber-600 font-semibold">✅ Yes (distributed)</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 font-semibold text-gray-900">Offline Verification</td>
+                                <td class="px-6 py-4 text-green-600 font-semibold">✅ Full</td>
+                                <td class="px-6 py-4 text-red-600 font-semibold">❌ No</td>
+                                <td class="px-6 py-4 text-red-600 font-semibold">❌ No</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 font-semibold text-gray-900">Central Authority</td>
+                                <td class="px-6 py-4 text-green-600 font-semibold">❌ None</td>
+                                <td class="px-6 py-4 text-red-600 font-semibold">✅ Required</td>
+                                <td class="px-6 py-4 text-green-600 font-semibold">❌ None (consensus)</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 font-semibold text-gray-900">Permissionless</td>
+                                <td class="px-6 py-4 text-green-600 font-semibold">✅ Instant</td>
+                                <td class="px-6 py-4 text-red-600 font-semibold">❌ No (approval needed)</td>
+                                <td class="px-6 py-4 text-green-600 font-semibold">✅ Yes</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 font-semibold text-gray-900">Cost</td>
+                                <td class="px-6 py-4 text-green-600 font-semibold">💚 CPU only</td>
+                                <td class="px-6 py-4 text-red-600 font-semibold">💰 High (operational)</td>
+                                <td class="px-6 py-4 text-red-600 font-semibold">💰 High (fees)</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 font-semibold text-gray-900">AI-Native</td>
+                                <td class="px-6 py-4 text-green-600 font-semibold">✅ Designed for agents</td>
+                                <td class="px-6 py-4 text-red-600 font-semibold">❌ Human-centric</td>
+                                <td class="px-6 py-4 text-red-600 font-semibold">❌ Human-centric</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </section>
 
-        <section>
-            <h2>Design Philosophy</h2>
-            <ul>
-                <li><strong>Cryptography First:</strong> Identity based on mathematical proofs, not institutional authority</li>
-                <li><strong>Minimal Primitives:</strong> Uses only Ed25519 and SHA-256—no exotic cryptography</li>
-                <li><strong>Stateless:</strong> Complete information is encoded in the keys; nothing needs to be stored on a server</li>
-                <li><strong>Deterministic:</strong> Same inputs always produce the same output. No randomness in identity calculation</li>
-                <li><strong>Open Standard:</strong> Completely open specification with multiple independent implementations</li>
-                <li><strong>Practical:</strong> Designed for real-world use, not just theoretical interest</li>
-            </ul>
+        <!-- Design Philosophy -->
+        <section class="mb-20">
+            <h2 class="text-4xl font-bold text-gray-900 mb-8 text-center">Design Philosophy</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-200">
+                    <div class="text-4xl mb-4">🔐</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Cryptography First</h3>
+                    <p class="text-gray-600">Identity based on mathematical proofs, not institutional authority</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-200">
+                    <div class="text-4xl mb-4">⚡</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Minimal Primitives</h3>
+                    <p class="text-gray-600">Uses only Ed25519 and SHA-256—no exotic cryptography</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-200">
+                    <div class="text-4xl mb-4">🌐</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Stateless</h3>
+                    <p class="text-gray-600">Complete information encoded in keys; nothing stored on servers</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-200">
+                    <div class="text-4xl mb-4">🎯</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Deterministic</h3>
+                    <p class="text-gray-600">Same inputs always produce same output. No randomness</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-200">
+                    <div class="text-4xl mb-4">📖</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Open Standard</h3>
+                    <p class="text-gray-600">Completely open specification with multiple implementations</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-200">
+                    <div class="text-4xl mb-4">🛠️</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Practical</h3>
+                    <p class="text-gray-600">Designed for real-world use, not just theoretical interest</p>
+                </div>
+            </div>
         </section>
 
-        <section>
-            <h2>Use Cases</h2>
-            <h3>For Individuals</h3>
-            <ul>
-                <li>Create a self-sovereign identity not tied to any company or government</li>
-                <li>Sign important documents with cryptographic proof of origin</li>
-                <li>Maintain the same identity across different platforms</li>
-                <li>Participate in permissionless systems while maintaining privacy</li>
-            </ul>
+        <!-- Use Cases -->
+        <section class="mb-20">
+            <h2 class="text-4xl font-bold text-gray-900 mb-8 text-center">Use Cases</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-8">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">For Individuals</h3>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-start">
+                            <span class="text-blue-500 mr-2">•</span>
+                            <span>Create self-sovereign identity not tied to any company or government</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-blue-500 mr-2">•</span>
+                            <span>Sign documents with cryptographic proof of origin</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-blue-500 mr-2">•</span>
+                            <span>Maintain same identity across different platforms</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-blue-500 mr-2">•</span>
+                            <span>Participate in permissionless systems while maintaining privacy</span>
+                        </li>
+                    </ul>
+                </div>
 
-            <h3>For Organizations</h3>
-            <ul>
-                <li>Implement permissionless identity verification systems</li>
-                <li>Build authentication without maintaining a user database</li>
-                <li>Create trustless communication channels</li>
-                <li>Verify the provenance of data and documents</li>
-            </ul>
+                <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-8">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">For Organizations</h3>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-start">
+                            <span class="text-purple-500 mr-2">•</span>
+                            <span>Implement permissionless identity verification systems</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-purple-500 mr-2">•</span>
+                            <span>Build authentication without maintaining user databases</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-purple-500 mr-2">•</span>
+                            <span>Create trustless communication channels</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-purple-500 mr-2">•</span>
+                            <span>Verify provenance of data and documents</span>
+                        </li>
+                    </ul>
+                </div>
 
-            <h3>For AI Systems</h3>
-            <ul>
-                <li>Autonomous agents prove their identity using cryptographic keys</li>
-                <li>AI systems sign actions and can be held accountable</li>
-                <li>Enable AI-to-AI communication with cryptographic verification</li>
-                <li>Create audit trails and accountability without central authorities</li>
-            </ul>
+                <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-8">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">For AI Systems</h3>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">•</span>
+                            <span>Autonomous agents prove identity using cryptographic keys</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">•</span>
+                            <span>AI systems sign actions and can be held accountable</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">•</span>
+                            <span>Enable AI-to-AI communication with cryptographic verification</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">•</span>
+                            <span>Create audit trails and accountability without central authorities</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </section>
 
-        <section>
-            <h2>Limitations & What SGAIP Is Not</h2>
-            <p>SGAIP solves the problem of identity derivation and cryptographic proof, but it's important to understand what it doesn't do:</p>
-            <ul>
-                <li><strong>Not a Trust System:</strong> SGAIP proves <em>who</em> you are, not whether you're <em>trustworthy</em>. You still need reputation systems, reviews, or social graphs for trust.</li>
-                <li><strong>Not Authorization:</strong> Identity doesn't imply permission. You need separate authorization systems to control what people can do.</li>
-                <li><strong>Not Discovery:</strong> SGAIP doesn't help you find other people or maintain contact information. It's purely identity derivation.</li>
-                <li><strong>Not Revocation:</strong> There's no built-in way to "revoke" an identity. If a key is compromised, you create a new one and move forward.</li>
-                <li><strong>Not Privacy:</strong> SGAIP itself doesn't hide your identity. You can use it anonymously, but additional layers are needed for privacy.</li>
-            </ul>
+        <!-- Limitations -->
+        <section class="mb-20">
+            <div class="bg-amber-50 rounded-2xl p-8 md:p-12 border-2 border-amber-200">
+                <h2 class="text-4xl font-bold text-gray-900 mb-6">Limitations & What SGAIP Is Not</h2>
+                <p class="text-lg text-gray-700 mb-6">SGAIP solves the problem of identity derivation and cryptographic proof, but it's important to understand what it doesn't do:</p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="flex items-start space-x-3">
+                        <span class="text-2xl">❌</span>
+                        <div>
+                            <strong class="text-gray-900">Not a Trust System:</strong>
+                            <p class="text-gray-700">SGAIP proves <em>who</em> you are, not whether you're <em>trustworthy</em>. You need reputation systems for trust.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <span class="text-2xl">❌</span>
+                        <div>
+                            <strong class="text-gray-900">Not Authorization:</strong>
+                            <p class="text-gray-700">Identity doesn't imply permission. You need separate authorization systems.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <span class="text-2xl">❌</span>
+                        <div>
+                            <strong class="text-gray-900">Not Discovery:</strong>
+                            <p class="text-gray-700">SGAIP doesn't help you find people or maintain contact information. It's purely identity derivation.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <span class="text-2xl">❌</span>
+                        <div>
+                            <strong class="text-gray-900">Not Revocation:</strong>
+                            <p class="text-gray-700">No built-in way to "revoke" an identity. If compromised, create a new one.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <span class="text-2xl">⚠️</span>
+                        <div>
+                            <strong class="text-gray-900">Not Privacy by Default:</strong>
+                            <p class="text-gray-700">SGAIP doesn't hide your identity. Use it anonymously, but additional layers needed for privacy.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <span class="text-2xl">⚠️</span>
+                        <div>
+                            <strong class="text-gray-900">Research Stage:</strong>
+                            <p class="text-gray-700">Not audited yet. Professional security audit planned for Q3 2026.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <section>
-            <h2>The Problem of Global Identity</h2>
-            <p>
-                Throughout human history, proving identity has required institutional authority. A passport proves identity because 
-                a government issued it. A bank account proves identity because a bank maintains records. A social media profile exists 
-                because a platform created it.
+        <!-- CTA -->
+        <section class="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 md:p-12 text-white text-center shadow-2xl">
+            <h2 class="text-4xl font-bold mb-6">Ready to Get Started?</h2>
+            <p class="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+                Explore the specifications or start implementing SGAIP today
             </p>
-            <p>
-                SGAIP breaks this pattern. It shows that identity can be mathematically derived, verified, and proved without any 
-                institution maintaining records. Your identity becomes a fact about your keys, not a fact about a database.
-            </p>
-        </section>
-
-        <section>
-            <h2>Getting Involved</h2>
-            <p>SGAIP is an open-source project. We welcome contributions, feedback, and implementations in other languages.</p>
-            <div style="margin: 30px 0;">
-                <ul>
-                    <li><a href="https://github.com/k-kaundal/sgaip" target="_blank"><strong>GitHub Repository</strong></a> – Source code and specifications</li>
-                    <li><a href="https://github.com/k-kaundal/sgaip/discussions" target="_blank"><strong>Community Discussions</strong></a> – Ask questions, share ideas</li>
-                    <li><a href="https://github.com/k-kaundal/sgaip/issues" target="_blank"><strong>Issue Tracker</strong></a> – Report bugs, request features</li>
-                    <li><a href="https://pypi.org/project/sgaip/" target="_blank"><strong>Python Package</strong></a> – Try it out in Python</li>
-                    <li><a href="https://www.npmjs.com/package/sgaip" target="_blank"><strong>JavaScript Package</strong></a> – Try it out in JavaScript</li>
-                </ul>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="https://github.com/k-kaundal/sgaip/blob/main/specs/sgaip-core.md" target="_blank" class="bg-white text-blue-600 px-8 py-4 rounded-xl font-bold hover:bg-blue-50 transition shadow-xl">
+                    Read Specifications
+                </a>
+                <a href="start.html" class="bg-white/20 backdrop-blur-sm text-white px-8 py-4 rounded-xl font-bold hover:bg-white/30 transition border border-white/30">
+                    Quick Start Guide
+                </a>
             </div>
         </section>
 
-        <section class="hero alt">
-            <h2 style="border: none; text-align: center;">Ready to Learn More?</h2>
-            <p style="text-align: center; margin-bottom: 30px;">Explore the technical specifications or start implementing SGAIP.</p>
-            <div class="cta-buttons" style="justify-content: center;">
-                <a href="specs.html" class="btn btn-primary">Read Specifications</a>
-                <a href="index.html#quickstart" class="btn btn-secondary">Quick Start Guide</a>
-            </div>
-        </section>
     </main>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-links">
-                <a href="index.html">Home</a>
-                <a href="https://github.com/k-kaundal/sgaip" target="_blank">GitHub</a>
-                <a href="https://github.com/k-kaundal/sgaip/discussions" target="_blank">Discussions</a>
-                <a href="about.html">About</a>
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-white font-bold text-lg mb-4 flex items-center">
+                        <svg class="w-6 h-6 mr-2 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                        </svg>
+                        SGAIP
+                    </h3>
+                    <p class="text-sm">Quantum-resistant identity for the next generation</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Resources</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="https://github.com/k-kaundal/sgaip/blob/main/ROADMAP.md" target="_blank" class="hover:text-white transition">Roadmap</a></li>
+                        <li><a href="https://github.com/k-kaundal/sgaip/blob/main/docs/security-guide.md" target="_blank" class="hover:text-white transition">Security Guide</a></li>
+                        <li><a href="https://github.com/k-kaundal/sgaip/blob/main/DEVELOPMENT.md" target="_blank" class="hover:text-white transition">Contributing</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Packages</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="https://pypi.org/project/sgaip/" target="_blank" class="hover:text-white transition">Python (PyPI)</a></li>
+                        <li><a href="https://www.npmjs.com/package/sgaip" target="_blank" class="hover:text-white transition">JavaScript (npm)</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Community</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="https://github.com/k-kaundal/sgaip" target="_blank" class="hover:text-white transition">GitHub</a></li>
+                        <li><a href="https://github.com/k-kaundal/sgaip/issues" target="_blank" class="hover:text-white transition">Issues</a></li>
+                        <li><a href="https://github.com/k-kaundal/sgaip/discussions" target="_blank" class="hover:text-white transition">Discussions</a></li>
+                    </ul>
+                </div>
             </div>
-            <p>&copy; 2025 SGAIP Contributors. Licensed under MIT.</p>
+            <div class="border-t border-gray-800 pt-8 text-center text-sm">
+                <p>&copy; 2026 SGAIP Contributors. Licensed under MIT.</p>
+            </div>
         </div>
     </footer>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && document.querySelector(href)) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    const offset = 80;
+                    const targetPosition = target.offsetTop - offset;
+                    window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
