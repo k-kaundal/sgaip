@@ -1,15 +1,36 @@
+# SGAIP Website Configuration for GitHub Pages
 title: SGAIP - Stateless Global Agent Identity Protocol
 description: A cryptographic identity protocol for humans and AI agents without registries or blockchains
+
+# Site URL
 url: https://k-kaundal.github.io
 baseurl: /sgaip
-theme: jekyll-theme-slate
+
+# Build settings
 markdown: kramdown
+theme: jekyll-theme-slate
+
+# Plugins
 plugins:
   - jekyll-sitemap
   - jekyll-seo-tag
 
+# Author
 author:
   name: SGAIP Contributors
-  email: contact@sgaip.dev
+  email: kk@sgaip.org
 
+# Settings
 locale: en_US
+show_downloads: false
+
+# Exclude from processing
+exclude:
+  - .git
+  - .gitignore
+  - node_modules
+  - Gemfile
+  - Gemfile.lock
+
+# Build time
+timezone: UTC
